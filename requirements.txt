@@ -1,0 +1,13 @@
+# pip install -r requirements.txt
+
+flask
+flask-smorest
+python-dotenv
+sqlalchemy
+flask-sqlalchemy
+flask-jwt-extended
+passlib
+flask-migrate # non credo che mi serva
+gunicorn
+psycopg2
+marshmallow
