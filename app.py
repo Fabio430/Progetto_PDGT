@@ -5,7 +5,7 @@ import os
 from flask import Flask, request, jsonify
 from flask_smorest import abort, Api
 from flask_jwt_extended import JWTManager
-# from flask_migrate import Migrate
+from flask_migrate import Migrate
 from dotenv import load_dotenv
 from datetime import timedelta
 
@@ -29,7 +29,7 @@ def create_app(db_url=None):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     db.init_app(app)
-    #migrate = Migrate(app, db)
+    migrate = Migrate(app, db)
     api = Api(app)
 
     # the secret key set here, "fabio", is not very safe
@@ -72,8 +72,8 @@ def create_app(db_url=None):
     def token_not_fresh_callback(jwt_header, jwt_payload):
         return (jsonify({"description": "The token is not fresh.", "error": "fresh_token_required"}), 401)
     
-    with app.app_context():
-       db.create_all()
+    # with app.app_context():
+    #    db.create_all()
 
     api.register_blueprint(MovieBlueprint)
     api.register_blueprint(UserBlueprint)

@@ -7,7 +7,7 @@ sqlalchemy
 flask-sqlalchemy
 flask-jwt-extended
 passlib
-flask-migrate # non credo che mi serva
+flask-migrate
 gunicorn
 psycopg2
 marshmallow
