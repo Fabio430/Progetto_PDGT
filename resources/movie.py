@@ -5,7 +5,7 @@ from flask_smorest import Blueprint, abort
 from schemas import MovieSchema, MovieUpdateSchema, MultipleMoviesSchema
 
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy import and_, or_
+from sqlalchemy import and_, or_, text
 from db import db
 from models import MovieModel
 from resources.resources_methods import ValidationFunctions
@@ -262,7 +262,7 @@ class MovieList(MethodView):
             db.session.commit()
 
             # Reset the ID sequence for the MovieModel
-            db.session.execute("TRUNCATE TABLE movies RESTART IDENTITY")
+            db.session.execute(text("TRUNCATE TABLE movies RESTART IDENTITY"))
             db.session.commit()
         else:
             abort(404, message="There aren't any movies")
