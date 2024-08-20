@@ -8,19 +8,19 @@ video 75(How to configure Flask-SQLAlchemy with your Flask app) udemy per creare
 # __pycache__ -> ok
 # .venv -> ok
 # instance -> ok
-migrations
+# migrations
 # models -> ok
 # resources -> ok
-.env
+# .env
 # .env.example -> ok
 # .flaskenv -> ok
-.gitignore
-app.py
+# .gitignore
+# app.py
 # blocklist.py -> ok
 # contributing.md -> ok
 # db.py -> ok
 # docker-entrypoint.sh -> ok
-Dockerfile
+# Dockerfile
 # readme.md -> ok
 # requirements.txt -> ok
 # schemas.py -> ok
@@ -35,7 +35,7 @@ cose da aggiungere all'API:
 # - aggiungere qualche altra funzionalità di ricerca, ordinamento, ecc.
 # - aggiungere i route per il rating
 - migliorare la sicurezza della chiave segreta -> ho generato una chiave più sicura. Quando faccio il deployment su render, faccio lo store della key come environment variable
-- fare i passaggi vari per il deployment dell'app
+# - fare i passaggi vari per il deployment dell'app
 
 # - decidere se aggiungere o no la migrazione del database (no)
 # - controllare gli HTTP status code in app.py, cioè i 401

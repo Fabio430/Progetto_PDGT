@@ -1,5 +1,3 @@
-#import uuid
-#import re
 from flask import request, jsonify
 from flask.views import MethodView
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -7,8 +5,6 @@ from flask_smorest import Blueprint, abort
 from schemas import MovieSchema, MovieUpdateSchema, MultipleMoviesSchema
 
 from sqlalchemy.exc import SQLAlchemyError
-# from sqlalchemy.exc import IntegrityError
-# from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import and_, or_
 from db import db
 from models import MovieModel
@@ -167,7 +163,6 @@ class MovieGenre(MethodView):
             return movies
         abort(404, message="Movies not found for the specified genre")
 
-# http://127.0.0.1:5000/
 @blp.route("/movie/<string:movie_id>")
 class MovieId(MethodView):
     @blp.response(200, MovieSchema)

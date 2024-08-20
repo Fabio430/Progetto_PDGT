@@ -1,9 +1,9 @@
-# import uuid
-# import models
 import os
 
-from flask import Flask, request, jsonify
-from flask_smorest import abort, Api
+from flask import Flask, jsonify
+# from flask import request
+from flask_smorest import Api
+# from flask_smorest import abort
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from dotenv import load_dotenv
@@ -31,17 +31,6 @@ def create_app(db_url=None):
     db.init_app(app)
     migrate = Migrate(app, db)
     api = Api(app)
-
-    # the secret key set here, "fabio", is not very safe
-    # Instead you should generate a long and random secret key using something like 
-    # import secrets
-
-    # def generate_secret_key(length):
-    #     return secrets.token_urlsafe(length)
-
-    # # Generate a secret key with a specified length (e.g., 32 bytes)
-    # secret_key = generate_secret_key(32)
-    # print("Generated Secret Key:", secret_key)
 
     app.config["JWT_SECRET_KEY"] = "cJpieIQE7fZh-5Ajr-iT_CTMcmAPWzvCd7l7gYQTnYk"
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=3)  # Default is 15 minutes
@@ -71,43 +60,8 @@ def create_app(db_url=None):
     @jwt.needs_fresh_token_loader
     def token_not_fresh_callback(jwt_header, jwt_payload):
         return (jsonify({"description": "The token is not fresh.", "error": "fresh_token_required"}), 401)
-    
-    # with app.app_context():
-    #    db.create_all()
 
     api.register_blueprint(MovieBlueprint)
     api.register_blueprint(UserBlueprint)
 
     return app
-
-# Flask app initialization and running
-# devo provare se funziona, posso anche fare senza
-# if __name__ == '__main__':
-#     create_app()
-
-
-
-
-# @app.get("/movie")  # http://127.0.0.1:5001/movie
-# def get_movies():
-#     return {"movies": movies}
-
-
-# @app.post("/movie")
-# def add_movie():
-#     request_data = request.get_json()
-#     new_movie = {"Title": request_data["Title"],
-#                  "Director": request_data["Director"],
-#                  "Year": request_data["Year"],
-#                  "Genres": request_data["Genres"],
-#                  "Runtime": request_data["Runtime"],
-#                  "Original language": request_data["Original language"]}
-#     movies.append(new_movie)
-#     return new_movie, 201
-
-# @app.get("/movie/<string:title>")
-# def get_movie(title):
-#     for movie in movies:
-#         if movie["Title"] == title:
-#             return movie
-#     return {"message": "Movie not found"}, 404

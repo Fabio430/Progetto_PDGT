@@ -1,7 +1,7 @@
-from flask import request, jsonify
+# from flask import request, jsonify
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from flask_jwt_extended import create_access_token, get_jwt, jwt_required, create_refresh_token, get_jwt_identity, JWTManager
+from flask_jwt_extended import create_access_token, get_jwt, jwt_required, create_refresh_token, get_jwt_identity
 import jwt
 from passlib.hash import pbkdf2_sha256
 
@@ -65,10 +65,6 @@ class UserLogout(MethodView):
 class TokenRefresh(MethodView):
     @jwt_required(refresh=True)
     def post(self):
-        # refresh_jti = get_jwt()["jti"]
-        # if refresh_jti in BLOCKLIST:
-        #     return {"message": "Access token already in the BLOCKLIST"}, 401
-
         current_user = get_jwt_identity()
         new_token = create_access_token(identity=current_user, fresh=False)
 
