@@ -259,7 +259,7 @@ class MovieList(MethodView):
         if movies:
             for movie in movies:
                 db.session.delete(movie)
-                db.session.commit()
+            db.session.commit()
         else:
             abort(404, message="There aren't any movies")
         
