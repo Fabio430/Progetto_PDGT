@@ -1,11 +1,10 @@
-from flask import request, jsonify
 from flask.views import MethodView
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 from flask_smorest import Blueprint, abort
 from schemas import MovieSchema, MovieUpdateSchema, MultipleMoviesSchema
 
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy import and_, or_, text
+from sqlalchemy import and_, or_
 from db import db
 from models import MovieModel
 from resources.resources_methods import ValidationFunctions
@@ -260,14 +259,10 @@ class MovieList(MethodView):
             for movie in movies:
                 db.session.delete(movie)
             db.session.commit()
-
-            # Reset the ID sequence for the MovieModel
-            db.session.execute(text("TRUNCATE TABLE movies RESTART IDENTITY"))
-            db.session.commit()
         else:
             abort(404, message="There aren't any movies")
         
-        return {"message": "Movies deleted and ID sequence reset"}, 200
+        return {"message": "Movies deleted"}, 200
     
     @blp.arguments(MovieSchema(many=True))
     @blp.response(201, MultipleMoviesSchema)
