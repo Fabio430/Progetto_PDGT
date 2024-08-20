@@ -32,7 +32,8 @@ def create_app(db_url=None):
     migrate = Migrate(app, db)
     api = Api(app)
 
-    app.config["JWT_SECRET_KEY"] = "cJpieIQE7fZh-5Ajr-iT_CTMcmAPWzvCd7l7gYQTnYk"
+    # app.config["JWT_SECRET_KEY"] = "cJpieIQE7fZh-5Ajr-iT_CTMcmAPWzvCd7l7gYQTnYk"
+    app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=3)  # Default is 15 minutes
     app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(minutes=5)  # Default is 30 days
     jwt = JWTManager(app)
