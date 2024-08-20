@@ -260,10 +260,14 @@ class MovieList(MethodView):
             for movie in movies:
                 db.session.delete(movie)
             db.session.commit()
+
+            # Reset the ID sequence for the MovieModel
+            db.session.execute("TRUNCATE TABLE movies RESTART IDENTITY")
+            db.session.commit()
         else:
             abort(404, message="There aren't any movies")
         
-        return {"message": "Movies deleted"}, 200
+        return {"message": "Movies deleted and ID sequence reset"}, 200
     
     @blp.arguments(MovieSchema(many=True))
     @blp.response(201, MultipleMoviesSchema)
