@@ -40,8 +40,7 @@ cose da aggiungere all'API:
 # - decidere se aggiungere o no la migrazione del database (no)
 # - controllare gli HTTP status code in app.py, cioè i 401
 # - controllare se cambiare le stringhe di informazione e i codici di errore (404, 409, ecc.)
-- il file con la chiave credo di doverlo portare all'esame. Comunque devo controllare i file che devo portarmi tra quelli che aggiungo a .gitignore
-  oppure semplicemente carico tutti i file nella repository pubblica di github, per esempio anche il .env--> posso mettere una nota in Readme.md dove scrivo che di solito file1, file2, ecc. dovrebbero essere aggiunti a .gitignore ma per semplicità li ho lasciati nella repository pubblica.
+- mettere una copia del progetto in una pennetta
 # - quando effettuo il logout, devo rimuovere anche il refresh token (fatto)
 # - nella ricerca per decade, una stringa come questa: "2010ss" funziona. Quindi devo sistemare questo bug. (sistemato)
 - documentare meglio il codice attraverso i commenti
