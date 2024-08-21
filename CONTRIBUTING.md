@@ -54,7 +54,7 @@ CMD ["gunicorn", "--bind", "0.0.0.0:80", "app:create_app()"]
 
 ## API secret key
 the secret key set here, "fabio", is not very safe
-Instead you should generate a long and random secret key using something like 
+Instead you should generate a long and random secret key using something like:
 import secrets
 
 def generate_secret_key(length):

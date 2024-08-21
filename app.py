@@ -1,9 +1,7 @@
 import os
 
 from flask import Flask, jsonify
-# from flask import request
 from flask_smorest import Api
-# from flask_smorest import abort
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from dotenv import load_dotenv
@@ -19,12 +17,6 @@ def create_app(db_url=None):
     app = Flask(__name__)
     load_dotenv()
     app.config["PROPAGATE EXCEPTIONS"] = True
-    app.config["API_TITLE"] = "Movies API"
-    app.config["API_VERSION"] = "v1"
-    app.config["OPENAPI_VERSION"] = "3.0.3"
-    app.config["OPENAPI_URL_PREFIX"] = "/"
-    app.config["OPENAPI_SWAGGER_UI_PATH"] = "/swagger-ui"
-    app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
     app.config["SQLALCHEMY_DATABASE_URI"] = db_url or os.getenv("DATABASE_URL", "sqlite:///data.db")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -32,7 +24,6 @@ def create_app(db_url=None):
     migrate = Migrate(app, db)
     api = Api(app)
 
-    # app.config["JWT_SECRET_KEY"] = "cJpieIQE7fZh-5Ajr-iT_CTMcmAPWzvCd7l7gYQTnYk"
     app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=3)  # Default is 15 minutes
     app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(minutes=5)  # Default is 30 days

@@ -34,16 +34,14 @@ cose da aggiungere all'API:
 # - modificare la ricerca, l'eliminazione e la modifica in modo che utilizzi la stringa del titolo del film -> ok
 # - aggiungere qualche altra funzionalità di ricerca, ordinamento, ecc.
 # - aggiungere i route per il rating
-- migliorare la sicurezza della chiave segreta -> ho generato una chiave più sicura. Quando faccio il deployment su render, faccio lo store della key come environment variable
+# - migliorare la sicurezza della chiave segreta -> ho generato una chiave più sicura. Quando faccio il deployment su render, faccio lo store della key come environment variable
 # - fare i passaggi vari per il deployment dell'app
 
 # - decidere se aggiungere o no la migrazione del database (no)
 # - controllare gli HTTP status code in app.py, cioè i 401
 # - controllare se cambiare le stringhe di informazione e i codici di errore (404, 409, ecc.)
 - il file con la chiave credo di doverlo portare all'esame. Comunque devo controllare i file che devo portarmi tra quelli che aggiungo a .gitignore
-  oppure semplicemente carico tutti i file nella repository pubblica di github, per esempio anche il .env(potrei chiedere alla prof), tanto alla fine 
-  è un progetto per un esame --> posso mettere una nota in Readme.md dove scrivo che di solito file1, file2, ecc. dovrebbero essere aggiunti a .gitignore
-  ma per semplicità li ho lasciati nella repository pubblica.
+  oppure semplicemente carico tutti i file nella repository pubblica di github, per esempio anche il .env--> posso mettere una nota in Readme.md dove scrivo che di solito file1, file2, ecc. dovrebbero essere aggiunti a .gitignore ma per semplicità li ho lasciati nella repository pubblica.
 # - quando effettuo il logout, devo rimuovere anche il refresh token (fatto)
 # - nella ricerca per decade, una stringa come questa: "2010ss" funziona. Quindi devo sistemare questo bug. (sistemato)
 - documentare meglio il codice attraverso i commenti
