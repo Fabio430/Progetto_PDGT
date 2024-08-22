@@ -1,3 +1,4 @@
+# Custom exceptions for movie-related errors
 class MovieExceptions:
     class MovieAlreadyExistsError(Exception):
         # Raised when a movie with the same title, director, and year already exists

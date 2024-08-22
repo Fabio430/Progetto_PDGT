@@ -1,7 +1,8 @@
 from db import db
 
+# Database model for movies
 class MovieModel(db.Model):
-    __tablename__ = "movies"
+    __tablename__ = "movies" # Table name in the database
 
     id = db.Column(db.Integer, primary_key=True) 
     title = db.Column(db.String(80), nullable=False)

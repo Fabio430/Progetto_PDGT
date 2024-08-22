@@ -12,8 +12,10 @@ from resources.resources_methods import MovieExceptions
 
 MAX_MOVIES_LIMIT = 200
 
+# Blueprint for the movie resource, allowing us to define routes
 blp = Blueprint("movies", __name__, description="Operations on movies")
 
+# Resource for fetching movies from a specific decade
 @blp.route("/movie/decade/<string:decade>")
 class MovieDecade(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -35,6 +37,7 @@ class MovieDecade(MethodView):
         else:
             abort(400, message="Invalid decade format")
 
+# Resource for sorting movies by rating
 @blp.route("/movie/rating/sorting/<string:sort_direction>")
 class MovieRatingSorting(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -49,6 +52,7 @@ class MovieRatingSorting(MethodView):
             abort(400, message="Error, invalid sort direction. Use 'asc' or 'desc'.")
         return movies
 
+# Resource for sorting movies by year
 @blp.route("/movie/year/sorting/<string:sort_direction>")
 class MovieYearSorting(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -63,6 +67,7 @@ class MovieYearSorting(MethodView):
             abort(400, message="Error, invalid sort direction. Use 'asc' or 'desc'.")
         return movies
 
+# Resource for sorting movies by title
 @blp.route("/movie/title/sorting/<string:sort_direction>")
 class MovieTitleSorting(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -77,6 +82,7 @@ class MovieTitleSorting(MethodView):
             abort(400, message="Error, invalid sort direction. Use 'asc' or 'desc'.")
         return movies
 
+# Resource for sorting movies by ID
 @blp.route("/movie/id/sorting/<string:sort_direction>")
 class MovieIdSorting(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -91,6 +97,7 @@ class MovieIdSorting(MethodView):
             abort(400, message="Error, invalid sort direction. Use 'asc' or 'desc'.")
         return movies
 
+# Resource for sorting movies by runtime
 @blp.route("/movie/runtime/sorting/<string:sort_direction>")
 class MovieRuntimeSorting(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -105,6 +112,7 @@ class MovieRuntimeSorting(MethodView):
             abort(400, message="Error, invalid sort direction. Use 'asc' or 'desc'.")
         return movies
 
+# Resource for fetching movies by their original language
 @blp.route("/movie/original_language/<string:original_language>")
 class MovieOriginalLanguage(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -116,6 +124,7 @@ class MovieOriginalLanguage(MethodView):
             return movies
         abort(404, message="Movies not found for the specified language")
 
+# Resource for fetching movies by year
 @blp.route("/movie/year/<string:year>")
 class MovieYear(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -126,6 +135,7 @@ class MovieYear(MethodView):
             return movies
         abort(404, message="Movies not found for the specified year")
 
+# Resource for fetching movies by director
 @blp.route("/movie/director/<string:director>")
 class MovieDirector(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -137,6 +147,7 @@ class MovieDirector(MethodView):
             return movies
         abort(404, message="Movies not found for the specified director")
 
+# Resource for fetching movies by title
 @blp.route("/movie/title/<string:title>")
 class MovieTitle(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -148,6 +159,7 @@ class MovieTitle(MethodView):
             return movies
         abort(404, message="Movies not found for the specified title")
 
+# Resource for fetching movies by genre
 @blp.route("/movie/genre/<string:genre>")
 class MovieGenre(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -162,6 +174,7 @@ class MovieGenre(MethodView):
             return movies
         abort(404, message="Movies not found for the specified genre")
 
+# Resource for fetching, deleting, or updating a movie by ID
 @blp.route("/movie/<string:movie_id>")
 class MovieId(MethodView):
     @blp.response(200, MovieSchema)
@@ -219,6 +232,7 @@ class MovieId(MethodView):
         
         return response
 
+# Resource for adding a single movie
 @blp.route("/addmovie")
 class AddMovie(MethodView):
     @blp.arguments(MovieSchema)
@@ -243,7 +257,8 @@ class AddMovie(MethodView):
             abort(500, message="An unknown error occurred")
         
         return added_movie, 201
-    
+
+# Resource for fetching or deleting all movies, or bulk adding movies
 @blp.route("/movielist")
 class MovieList(MethodView):
     @blp.response(200, MovieSchema(many=True))
@@ -297,7 +312,8 @@ class MovieList(MethodView):
             return {"error_messages": errors}, 400
         else:
             return {"movies": added_movies}, 201
-        
+
+# Utility class for adding a single movie
 class AddSingleMovie():
     @staticmethod
     def add_single_movie(movie_data):
