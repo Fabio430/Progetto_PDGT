@@ -644,3 +644,501 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
 4. **Aggiornamento del Token con Refresh Token Non Valido**:
    - **Dati Attesi**: Refresh token mancante, scaduto, o non valido.
    - **Dati Ottenuti**: Messaggio di errore che indica la mancanza o l'invalidità del refresh token.
+
+Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestione dei film, mostrando come interagire con l'API e i dati attesi e ottenuti in ciascun caso.
+
+### Esempio 1: Recupero Film per Decennio
+
+1. **Richiesta**: Recuperare i film di un decennio specifico
+   - **Metodo HTTP**: `GET`
+   - **URL**: `/movie/decade/1990s`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     ```
+2. **Risposta**:
+   - **Status Code**: `200 OK`
+   - **Corpo della Risposta**:
+     ```json
+     [
+       {
+         "id": 1,
+         "title": "Pulp Fiction",
+         "director": "Quentin Tarantino",
+         "year": 1994,
+         "genres": "Crime, Drama",
+         "runtime": "154 min",
+         "original_language": "English",
+         "rating": "8.9"
+       },
+       {
+         "id": 2,
+         "title": "The Matrix",
+         "director": "Lana Wachowski, Lilly Wachowski",
+         "year": 1999,
+         "genres": "Action, Sci-Fi",
+         "runtime": "136 min",
+         "original_language": "English",
+         "rating": "8.7"
+       }
+     ]
+     ```
+
+### Esempio 2: Ordinamento Film per Valutazione
+
+1. **Richiesta**: Ordinare i film in base alla valutazione in ordine decrescente
+   - **Metodo HTTP**: `GET`
+   - **URL**: `/movie/rating/sorting/desc`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     ```
+2. **Risposta**:
+   - **Status Code**: `200 OK`
+   - **Corpo della Risposta**:
+     ```json
+     [
+       {
+         "id": 3,
+         "title": "The Godfather",
+         "director": "Francis Ford Coppola",
+         "year": 1972,
+         "genres": "Crime, Drama",
+         "runtime": "175 min",
+         "original_language": "English",
+         "rating": "9.2"
+       },
+       {
+         "id": 4,
+         "title": "The Dark Knight",
+         "director": "Christopher Nolan",
+         "year": 2008,
+         "genres": "Action, Crime, Drama",
+         "runtime": "152 min",
+         "original_language": "English",
+         "rating": "9.0"
+       }
+     ]
+     ```
+
+### Esempio 3: Recupero Film per Genere
+
+1. **Richiesta**: Recuperare tutti i film del genere "Sci-Fi"
+   - **Metodo HTTP**: `GET`
+   - **URL**: `/movie/genre/Sci-Fi`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     ```
+2. **Risposta**:
+   - **Status Code**: `200 OK`
+   - **Corpo della Risposta**:
+     ```json
+     [
+       {
+         "id": 5,
+         "title": "Interstellar",
+         "director": "Christopher Nolan",
+         "year": 2014,
+         "genres": "Adventure, Drama, Sci-Fi",
+         "runtime": "169 min",
+         "original_language": "English",
+         "rating": "8.6"
+       },
+       {
+         "id": 6,
+         "title": "Blade Runner 2049",
+         "director": "Denis Villeneuve",
+         "year": 2017,
+         "genres": "Action, Drama, Mystery, Sci-Fi",
+         "runtime": "164 min",
+         "original_language": "English",
+         "rating": "8.0"
+       }
+     ]
+     ```
+
+### Esempio 4: Aggiunta di un Nuovo Film
+
+1. **Richiesta**: Aggiungere un nuovo film al database
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/addmovie`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     Content-Type: application/json
+     ```
+   - **Corpo della Richiesta**:
+     ```json
+     {
+       "title": "Inception",
+       "director": "Christopher Nolan",
+       "year": 2010,
+       "genres": "Action, Sci-Fi, Thriller",
+       "runtime": "148 min",
+       "original_language": "English",
+       "rating": "8.8"
+     }
+     ```
+2. **Risposta**:
+   - **Status Code**: `201 Created`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "id": 7,
+       "title": "Inception",
+       "director": "Christopher Nolan",
+       "year": 2010,
+       "genres": "Action, Sci-Fi, Thriller",
+       "runtime": "148 min",
+       "original_language": "English",
+       "rating": "8.8"
+     }
+     ```
+
+### Esempio 5: Eliminazione di un Film per ID
+
+1. **Richiesta**: Eliminare un film specifico per ID
+   - **Metodo HTTP**: `DELETE`
+   - **URL**: `/movie/7`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     ```
+2. **Risposta**:
+   - **Status Code**: `200 OK`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "message": "Movie deleted"
+     }
+     ```
+
+### Descrizione dei Dati Attesi/Ottenuti
+
+1. **Recupero Film per Decennio**:
+   - **Dati Attesi**: Parametro del decennio come parte dell'URL.
+   - **Dati Ottenuti**: Lista di film usciti nel decennio specificato.
+
+2. **Ordinamento Film per Valutazione**:
+   - **Dati Attesi**: Parametro di ordinamento (`asc` o `desc`) come parte dell'URL.
+   - **Dati Ottenuti**: Lista di film ordinati per valutazione.
+
+3. **Recupero Film per Genere**:
+   - **Dati Attesi**: Parametro del genere come parte dell'URL.
+   - **Dati Ottenuti**: Lista di film del genere specificato.
+
+4. **Aggiunta di un Nuovo Film**:
+   - **Dati Attesi**: Informazioni dettagliate del film nel corpo della richiesta.
+   - **Dati Ottenuti**: I dati del film appena creato.
+
+5. **Eliminazione di un Film per ID**:
+   - **Dati Attesi**: ID del film come parte dell'URL.
+   - **Dati Ottenuti**: Messaggio di conferma dell'eliminazione del film.
+
+
+Questi esempi descrivono situazioni in cui le richieste non hanno successo, spiegando i motivi degli errori e mostrando i messaggi di risposta che l'API fornisce agli utenti.
+
+### Esempio 1: Recupero Film per Decennio con Formato Errato
+
+1. **Richiesta**: Tentativo di recuperare film per un decennio con formato non valido
+   - **Metodo HTTP**: `GET`
+   - **URL**: `/movie/decade/19905`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     ```
+2. **Risposta**:
+   - **Status Code**: `400 Bad Request`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "message": "Invalid decade format"
+     }
+     ```
+
+### Esempio 2: Ordinamento Film con Direzione Errata
+
+1. **Richiesta**: Tentativo di ordinare i film con una direzione di ordinamento non valida
+   - **Metodo HTTP**: `GET`
+   - **URL**: `/movie/rating/sorting/invalid_direction`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     ```
+2. **Risposta**:
+   - **Status Code**: `400 Bad Request`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "message": "Error, invalid sort direction. Use 'asc' or 'desc'."
+     }
+     ```
+
+### Esempio 3: Recupero Film per Genere Non Esistente
+
+1. **Richiesta**: Tentativo di recuperare film per un genere non esistente nel database
+   - **Metodo HTTP**: `GET`
+   - **URL**: `/movie/genre/UnknownGenre`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     ```
+2. **Risposta**:
+   - **Status Code**: `404 Not Found`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "message": "Movies not found for the specified genre"
+     }
+     ```
+
+### Esempio 4: Aggiunta di un Film con Dati Non Validi
+
+1. **Richiesta**: Tentativo di aggiungere un nuovo film con dati non validi
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/addmovie`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     Content-Type: application/json
+     ```
+   - **Corpo della Richiesta**:
+     ```json
+     {
+       "title": "New Movie",
+       "director": "Invalid Director Name",
+       "year": 1800,
+       "genres": "Unknown Genre",
+       "runtime": "not_a_number min",
+       "original_language": "Invalid Language",
+       "rating": "Invalid Rating"
+     }
+     ```
+2. **Risposta**:
+   - **Status Code**: `400 Bad Request`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "message": "The year is not correct"
+     }
+     ```
+
+### Esempio 5: Eliminazione di un Film con ID Non Esistente
+
+1. **Richiesta**: Tentativo di eliminare un film con un ID non esistente nel database
+   - **Metodo HTTP**: `DELETE`
+   - **URL**: `/movie/9999`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     ```
+2. **Risposta**:
+   - **Status Code**: `404 Not Found`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "message": "Movie not found"
+     }
+     ```
+
+### Descrizione dei Dati Attesi/Ottenuti in Caso di Errore
+
+1. **Recupero Film per Decennio con Formato Errato**:
+   - **Dati Attesi**: Parametro del decennio con formato errato.
+   - **Dati Ottenuti**: Messaggio di errore che indica un formato di decennio non valido.
+
+2. **Ordinamento Film con Direzione Errata**:
+   - **Dati Attesi**: Direzione di ordinamento non valida (`invalid_direction`).
+   - **Dati Ottenuti**: Messaggio di errore che indica un parametro di ordinamento non valido.
+
+3. **Recupero Film per Genere Non Esistente**:
+   - **Dati Attesi**: Parametro di un genere non presente nel database.
+   - **Dati Ottenuti**: Messaggio di errore che indica che non sono stati trovati film per il genere specificato.
+
+4. **Aggiunta di un Film con Dati Non Validi**:
+   - **Dati Attesi**: Dati del film non validi nel corpo della richiesta.
+   - **Dati Ottenuti**: Messaggio di errore che indica quali campi sono invalidi.
+
+5. **Eliminazione di un Film con ID Non Esistente**:
+   - **Dati Attesi**: ID del film non presente nel database.
+   - **Dati Ottenuti**: Messaggio di errore che indica che il film non è stato trovato.
+
+
+### Esempio 1: Aggiunta di una Lista di Film all'Endpoint `/movielist`
+
+1. **Richiesta**: Aggiungere una lista di nuovi film al database
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/movielist`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     Content-Type: application/json
+     ```
+   - **Corpo della Richiesta**:
+     ```json
+     [
+       {
+         "title": "Inception",
+         "director": "Christopher Nolan",
+         "year": 2010,
+         "genres": "Action, Sci-Fi, Thriller",
+         "runtime": "148 min",
+         "original_language": "English",
+         "rating": "8.8"
+       },
+       {
+         "title": "The Matrix",
+         "director": "Lana Wachowski, Lilly Wachowski",
+         "year": 1999,
+         "genres": "Action, Sci-Fi",
+         "runtime": "136 min",
+         "original_language": "English",
+         "rating": "8.7"
+       }
+     ]
+     ```
+2. **Risposta**:
+   - **Status Code**: `201 Created`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "movies": [
+         {
+           "id": 1,
+           "title": "Inception",
+           "director": "Christopher Nolan",
+           "year": 2010,
+           "genres": "Action, Sci-Fi, Thriller",
+           "runtime": "148 min",
+           "original_language": "English",
+           "rating": "8.8"
+         },
+         {
+           "id": 2,
+           "title": "The Matrix",
+           "director": "Lana Wachowski, Lilly Wachowski",
+           "year": 1999,
+           "genres": "Action, Sci-Fi",
+           "runtime": "136 min",
+           "original_language": "English",
+           "rating": "8.7"
+         }
+       ]
+     }
+     ```
+
+### Esempio 2: Aggiunta di una Lista di Film con Errori all'Endpoint `/movielist`
+
+1. **Richiesta**: Aggiungere una lista di nuovi film con alcuni dati non validi
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/movielist`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     Content-Type: application/json
+     ```
+   - **Corpo della Richiesta**:
+     ```json
+     [
+       {
+         "title": "Inception",
+         "director": "Christopher Nolan",
+         "year": 2010,
+         "genres": "Action, Sci-Fi, Thriller",
+         "runtime": "148 min",
+         "original_language": "English",
+         "rating": "8.8"
+       },
+       {
+         "title": "Unknown Film",
+         "director": "Invalid Director",
+         "year": 1800,
+         "genres": "Unknown Genre",
+         "runtime": "not_a_number min",
+         "original_language": "Invalid Language",
+         "rating": "Invalid Rating"
+       }
+     ]
+     ```
+2. **Risposta**:
+   - **Status Code**: `207 Multi-Status`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "movies": [
+         {
+           "id": 1,
+           "title": "Inception",
+           "director": "Christopher Nolan",
+           "year": 2010,
+           "genres": "Action, Sci-Fi, Thriller",
+           "runtime": "148 min",
+           "original_language": "English",
+           "rating": "8.8"
+         }
+       ],
+       "error_messages": [
+         "Error adding movie 'Unknown Film': The year is not correct"
+       ]
+     }
+     ```
+
+### Esempio 3: Aggiunta di una Lista di Film Non Validi all'Endpoint `/movielist`
+
+1. **Richiesta**: Tentativo di aggiungere una lista di nuovi film, tutti con dati non validi
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/movielist`
+   - **Headers**: 
+     ```
+     Authorization: Bearer <JWT_TOKEN>
+     Content-Type: application/json
+     ```
+   - **Corpo della Richiesta**:
+     ```json
+     [
+       {
+         "title": "Invalid Movie 1",
+         "director": "Invalid Director 1",
+         "year": 1800,
+         "genres": "Unknown Genre",
+         "runtime": "not_a_number min",
+         "original_language": "Invalid Language",
+         "rating": "Invalid Rating"
+       },
+       {
+         "title": "Invalid Movie 2",
+         "director": "Invalid Director 2",
+         "year": 1801,
+         "genres": "Another Unknown Genre",
+         "runtime": "not_a_number min",
+         "original_language": "Another Invalid Language",
+         "rating": "Another Invalid Rating"
+       }
+     ]
+     ```
+2. **Risposta**:
+   - **Status Code**: `400 Bad Request`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "error_messages": [
+         "Error adding movie 'Invalid Movie 1': The year is not correct",
+         "Error adding movie 'Invalid Movie 2': The year is not correct"
+       ]
+     }
+     ```
+
+### Descrizione dei Dati Attesi/Ottenuti
+
+1. **Aggiunta di una Lista di Film**:
+   - **Dati Attesi**: Lista di film validi nel corpo della richiesta.
+   - **Dati Ottenuti**: Lista di film appena aggiunti.
+
+2. **Aggiunta di una Lista di Film con Errori**:
+   - **Dati Attesi**: Lista di film con alcuni dati non validi.
+   - **Dati Ottenuti**: Lista di film aggiunti con messaggi di errore per quelli non validi.
+
+3. **Aggiunta di una lista di film con dati non validi**:
+- **Dati Attesi**: Lista di film non validi nel corpo della richiesta.
+- **Dati Ottenuti**: Messaggi di errore che spiegano perché ogni film non è stato aggiunto.
