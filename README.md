@@ -413,3 +413,234 @@ URL web service: https://progetto-pdgt.onrender.com
         - Status Code: `207 Multi-Status`
         - Status Code: `400 Bad Request`
         - Content-Type: application/json
+
+# 5. Descrizione delle modalità della messa online del servizio
+Il servizio è stato distribuito utilizzando Render, una piattaforma di hosting cloud che semplifica il deployment di applicazioni web e database. Il processo di messa online ha incluso i seguenti passaggi:
+    1. Configurazione del Database:
+        - Il database PostgreSQL è stato configurato su Render e accessibile tramite un URL specificato nel file `.env`. Questo URL consente al servizio di interagire con il database per operazioni di lettura e scrittura.
+    2. Deployment dell'Applicazione:
+        - L'applicazione è stata deployata su Render utilizzando il `Dockerfile` presente nel progetto. Render rileva automaticamente il file Docker e costruisce l'immagine necessaria   per eseguire il servizio.
+        - Le variabili d'ambiente, tra cui `DATABASE_URL` e `JWT_SECRET_KEY`, sono state configurate su Render per garantire la sicurezza e il corretto funzionamento del servizio.
+    3. Integrazione Continua:
+        - Render supporta l'integrazione continua (CI), permettendo il deploy automatico delle modifiche apportate al repository. Questo assicura che ogni aggiornamento venga applicato senza interruzioni del servizio.
+    4. Scalabilità e Monitoraggio:
+        - La piattaforma gestisce automaticamente la scalabilità delle risorse in base al traffico e al carico. Render fornisce anche strumenti di monitoraggio per tenere sotto controllo le prestazioni dell'applicazione e del database.
+
+Questa configurazione permette al servizio di rimanere online, sicuro, e in grado di gestire un numero variabile di richieste, con la possibilità di scalare automaticamente secondo le esigenze.
+
+Piccola nota riguardante i piani utilizzati su Render:
+sono stati utilizzati piani free sia per il deployment del web service sia per la configurazione del database. Per quanto riguarda il deployment questo comporta che in caso di inattività avviene uno spin down del servizio, il che significa che la richiesta successiva impiegherà diversi secondi per essere eseguita o potrebbe non andare a buon fine, dopo di che il servizio si riattiverà.
+Per quanto riguarda il database invece il piano free comporta la cancellazione dello stesso dopo 30 giorni se non si passa ad un piano a pagamento.
+
+# 6. Esempio descrittivo di utilizzo del servizio Web (sequenza di richieste/risposte HTTP di esempio, descrizione dei dati attesi/ottenuti)
+
+### Esempio 1: Registrazione di un Nuovo Utente
+
+1. **Richiesta**: Registrazione di un nuovo utente
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/register`
+   - **Headers**: 
+     ```
+     Content-Type: application/json
+     ```
+   - **Corpo della Richiesta**:
+     ```json
+     {
+       "username": "new_user",
+       "password": "secure_password"
+     }
+     ```
+2. **Risposta**:
+   - **Status Code**: `201 Created`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "message": "User created successfully."
+     }
+     ```
+
+### Esempio 2: Login di un Utente
+
+1. **Richiesta**: Autenticazione di un utente esistente
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/login`
+   - **Headers**:
+     ```
+     Content-Type: application/json
+     ```
+   - **Corpo della Richiesta**:
+     ```json
+     {
+       "username": "new_user",
+       "password": "secure_password"
+     }
+     ```
+2. **Risposta**:
+   - **Status Code**: `200 OK`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+       "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+     }
+     ```
+
+### Esempio 3: Logout di un Utente
+
+1. **Richiesta**: Logout di un utente autenticato
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/logout`
+   - **Headers**:
+     ```
+     Authorization: Bearer <JWT_ACCESS_TOKEN>
+     ```
+2. **Risposta**:
+   - **Status Code**: `200 OK`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "message": "Successfully logged out"
+     }
+     ```
+
+### Esempio 4: Aggiornamento del Token di Accesso
+
+1. **Richiesta**: Ottenere un nuovo token di accesso utilizzando un refresh token
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/refresh`
+   - **Headers**:
+     ```
+     Authorization: Bearer <JWT_REFRESH_TOKEN>
+     ```
+2. **Risposta**:
+   - **Status Code**: `200 OK`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+     }
+     ```
+
+### Descrizione dei Dati Attesi/Ottenuti
+
+1. **Registrazione Utente**:
+   - **Dati Attesi**: Username e password forniti come input JSON.
+   - **Dati Ottenuti**: Messaggio di conferma che l'utente è stato creato con successo.
+
+2. **Login Utente**:
+   - **Dati Attesi**: Username e password validi come input JSON.
+   - **Dati Ottenuti**: Due token JWT (access token e refresh token) in caso di successo.
+
+3. **Logout Utente**:
+   - **Dati Attesi**: Un token di accesso valido per autenticare la richiesta.
+   - **Dati Ottenuti**: Messaggio di conferma che l'utente è stato disconnesso.
+
+4. **Aggiornamento del Token**:
+   - **Dati Attesi**: Un refresh token valido per autenticare la richiesta.
+   - **Dati Ottenuti**: Un nuovo token di accesso JWT.
+
+Questi esempi descrivono situazioni in cui le richieste non hanno successo, spiegando i motivi degli errori e mostrando i messaggi di risposta che l'API fornisce agli utenti.
+
+### Esempio 1: Registrazione di un Utente con Username Duplicato
+
+1. **Richiesta**: Tentativo di registrare un nuovo utente con un username già esistente
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/register`
+   - **Headers**: 
+     ```
+     Content-Type: application/json
+     ```
+   - **Corpo della Richiesta**:
+     ```json
+     {
+       "username": "existing_user",
+       "password": "another_password"
+     }
+     ```
+2. **Risposta**:
+   - **Status Code**: `409 Conflict`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "message": "A user with that username already exists."
+     }
+     ```
+
+### Esempio 2: Login con Credenziali Non Valide
+
+1. **Richiesta**: Tentativo di login con credenziali errate
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/login`
+   - **Headers**:
+     ```
+     Content-Type: application/json
+     ```
+   - **Corpo della Richiesta**:
+     ```json
+     {
+       "username": "new_user",
+       "password": "wrong_password"
+     }
+     ```
+2. **Risposta**:
+   - **Status Code**: `401 Unauthorized`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "message": "Invalid credentials."
+     }
+     ```
+
+### Esempio 3: Logout Senza Token Valido
+
+1. **Richiesta**: Tentativo di logout senza fornire un token JWT valido
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/logout`
+   - **Headers**:
+     ```
+     Authorization: Bearer <INVALID_JWT_ACCESS_TOKEN>
+     ```
+2. **Risposta**:
+   - **Status Code**: `401 Unauthorized`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "message": "Missing or invalid token."
+     }
+     ```
+
+### Esempio 4: Aggiornamento del Token con Refresh Token Non Valido
+
+1. **Richiesta**: Tentativo di ottenere un nuovo access token con un refresh token non valido o scaduto
+   - **Metodo HTTP**: `POST`
+   - **URL**: `/refresh`
+   - **Headers**:
+     ```
+     Authorization: Bearer <INVALID_JWT_REFRESH_TOKEN>
+     ```
+2. **Risposta**:
+   - **Status Code**: `401 Unauthorized`
+   - **Corpo della Risposta**:
+     ```json
+     {
+       "message": "Missing or invalid refresh token."
+     }
+     ```
+
+### Descrizione dei Dati Attesi/Ottenuti in Caso di Errore
+
+1. **Registrazione Utente con Username Duplicato**:
+   - **Dati Attesi**: Username che esiste già nel database.
+   - **Dati Ottenuti**: Messaggio di errore che indica che l'utente esiste già.
+
+2. **Login con Credenziali Non Valide**:
+   - **Dati Attesi**: Credenziali non valide (username o password errati).
+   - **Dati Ottenuti**: Messaggio di errore che indica credenziali non valide.
+
+3. **Logout Senza Token Valido**:
+   - **Dati Attesi**: Token JWT mancante o non valido.
+   - **Dati Ottenuti**: Messaggio di errore che indica la mancanza o l'invalidità del token.
+
+4. **Aggiornamento del Token con Refresh Token Non Valido**:
+   - **Dati Attesi**: Refresh token mancante, scaduto, o non valido.
+   - **Dati Ottenuti**: Messaggio di errore che indica la mancanza o l'invalidità del refresh token.
