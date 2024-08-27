@@ -19,8 +19,19 @@ pip install -r requirements.txt
 
 
 ## Per fare la build del container
+This command tells Docker to:
+- Look for a Dockerfile in the current directory (.).
+- Use the instructions in that Dockerfile to build an image.
+- Tag the resulting image with the name movies-api, the -t flag allows you to tag the image with a name and optionally a version.
+
 docker build -t movies-api .
-## Per far partire il docker container:
+## Per far partire il docker container
+This command tells Docker to:
+- Start a container from the movies-api image.
+- Run the container in the background (detached mode), -d.
+- Map port 5000 on your local machine to port 5000 inside the container, -p 5000(local machine):5000(container), -p host_port:container_port
+- The application running in the container will be accessible on http://localhost:5000 if it is listening on port 5000 inside the container.
+
 docker run -d -p 5000:5000 movies-api
 ## altro comando
 docker run -dp 5005:5000 -w /app -v "/e/Storage_E/PDGT/2023/Progetto_PDGT:/app" movies-api
