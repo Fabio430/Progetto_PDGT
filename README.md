@@ -415,20 +415,24 @@ URL web service: https://progetto-pdgt.onrender.com
         - Content-Type: application/json
 
 # 5. Descrizione delle modalità della messa online del servizio
-Il servizio è stato distribuito utilizzando Render, una piattaforma di hosting cloud che semplifica il deployment di applicazioni web e database. Il processo di messa online ha incluso i seguenti passaggi:
-    1. Configurazione del Database:
-        - Il database PostgreSQL è stato configurato su Render e accessibile tramite un URL specificato nel file `.env`. Questo URL consente al servizio di interagire con il database per operazioni di lettura e scrittura.
-    2. Deployment dell'Applicazione:
-        - L'applicazione è stata deployata su Render utilizzando il `Dockerfile` presente nel progetto. Render rileva automaticamente il file Docker e costruisce l'immagine necessaria   per eseguire il servizio.
-        - Le variabili d'ambiente, tra cui `DATABASE_URL` e `JWT_SECRET_KEY`, sono state configurate su Render per garantire la sicurezza e il corretto funzionamento del servizio.
-    3. Integrazione Continua:
-        - Render supporta l'integrazione continua (CI), permettendo il deploy automatico delle modifiche apportate al repository. Questo assicura che ogni aggiornamento venga applicato senza interruzioni del servizio.
-    4. Scalabilità e Monitoraggio:
-        - La piattaforma gestisce automaticamente la scalabilità delle risorse in base al traffico e al carico. Render fornisce anche strumenti di monitoraggio per tenere sotto controllo le prestazioni dell'applicazione e del database.
+Il servizio è stato distribuito utilizzando **Render**, una piattaforma di hosting cloud che semplifica il deployment di applicazioni web e database. Il processo di messa online ha incluso i seguenti passaggi:
+
+1. **Configurazione del Database**:
+   - Il database PostgreSQL è stato configurato su Render e accessibile tramite un URL specificato nel file `.env`. Questo URL consente al servizio di interagire con il database per operazioni di lettura e scrittura.
+
+2. **Deployment dell'Applicazione**:
+   - Il deployment dell'applicazione su Render è stato fatto utilizzando il `Dockerfile` presente nel progetto. Render rileva automaticamente il file Docker e costruisce l'immagine necessaria per eseguire il servizio.
+   - Le variabili d'ambiente, tra cui `DATABASE_URL` e `JWT_SECRET_KEY`, sono state configurate su Render per garantire la sicurezza e il corretto funzionamento del servizio.
+
+3. **Integrazione Continua**:
+   - Render supporta l'integrazione continua (CI), permettendo il deploy automatico delle modifiche apportate al repository. Questo assicura che ogni aggiornamento venga applicato senza interruzioni del servizio.
+
+4. **Scalabilità e Monitoraggio**:
+   - La piattaforma gestisce automaticamente la scalabilità delle risorse in base al traffico e al carico. Render fornisce anche strumenti di monitoraggio per tenere sotto controllo le prestazioni dell'applicazione e del database.
 
 Questa configurazione permette al servizio di rimanere online, sicuro, e in grado di gestire un numero variabile di richieste, con la possibilità di scalare automaticamente secondo le esigenze.
 
-Piccola nota riguardante i piani utilizzati su Render:
+**Piccola nota riguardante i piani utilizzati su Render**:
 sono stati utilizzati piani free sia per il deployment del web service sia per la configurazione del database. Per quanto riguarda il deployment questo comporta che in caso di inattività avviene uno spin down del servizio, il che significa che la richiesta successiva impiegherà diversi secondi per essere eseguita o potrebbe non andare a buon fine, dopo di che il servizio si riattiverà.
 Per quanto riguarda il database invece il piano free comporta la cancellazione dello stesso dopo 30 giorni se non si passa ad un piano a pagamento.
 
