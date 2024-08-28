@@ -449,7 +449,7 @@ Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strum
    - **Metodo HTTP**: `POST`
    - **URL**: `/register`
    - **Headers**:
-      - `Content-Type: application/json`
+    - `Content-Type: application/json`
    - **Corpo della Richiesta**:
      ```json
      {
