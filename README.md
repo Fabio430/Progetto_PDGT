@@ -28,7 +28,7 @@ Inoltre è ovviamente possibile fare il logout ed è presente una richiesta per 
 
 Lo scopo del servizio è quello di permettere l'accesso e la gestione di una libreria virtuale di film in modo sicuro e strutturato.
 
-# 2. Descrizione di architettura e scelte implementative (componenti software, comunicazione tra componenti, tecnologie adottate, librerie, scelte implementative di rilievo, etc.)
+## 2. Descrizione di architettura e scelte implementative (componenti software, comunicazione tra componenti, tecnologie adottate, librerie, scelte implementative di rilievo, etc.)
 Il servizio è stato sviluppato utilizzando Flask, un microframework per Python. L'architettura del progetto segue un modello client-server classico, dove Flask gestisce il backend e fornisce un'API RESTful.
 
 Componenti software principali
@@ -59,7 +59,7 @@ Scelte implementative di rilievo
 Ulteriori informazioni
 - Il file blocklist.py viene utilizzato per fare lo store degli access token e dei refresh token non più validi. Il file refresh_token_store.py invece viene utilizzato per fare lo store momentaneo del refresh token. Sono stati utilizzati dei file locali per semplicità ma probabilmente questa non è la scelta migliore né la più sicura.
 
-# 3. Riferimento a eventuali dati o servizi esterni sfruttati
+## 3. Riferimento a eventuali dati o servizi esterni sfruttati
 Il progetto utilizza un database PostgreSQL ospitato su Render. Il database è accessibile tramite un URL specificato nel file .env e viene utilizzato per memorizzare i dati relativi agli utenti e ai film. Inoltre, anche il deployment del servizio è stato effettuato su Render, una piattaforma che facilita il deployment di applicazioni web con integrazione continua e scalabilità automatica.
 
 # 4. Documentazione dell’API implementata (URL, dettagli delle richieste HTTP supportate, formato e codifica dei dati in input ed output, etc.)
@@ -418,7 +418,7 @@ URL web service: https://progetto-pdgt.onrender.com
         - Content-Type: application/json
 
 # 5. Descrizione delle modalità della messa online del servizio
-Il servizio è stato distribuito utilizzando **Render**, una piattaforma di hosting cloud che semplifica il deployment di applicazioni web e database. Il processo di messa online ha incluso i seguenti passaggi:
+Il servizio è stato distribuito utilizzando Render, una piattaforma di hosting cloud che semplifica il deployment di applicazioni web e database. Il processo di messa online ha incluso i seguenti passaggi:
 
 1. **Configurazione del Database**:
    - Il database PostgreSQL è stato configurato su Render e accessibile tramite un URL specificato nel file `.env`. Questo URL consente al servizio di interagire con il database per operazioni di lettura e scrittura.
@@ -448,10 +448,8 @@ Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strum
 1. **Richiesta**: Registrazione di un nuovo utente
    - **Metodo HTTP**: `POST`
    - **URL**: `/register`
-   - **Headers**: 
-     ```
-     Content-Type: application/json
-     ```
+   - **Headers**:
+      - `Content-Type: application/json`
    - **Corpo della Richiesta**:
      ```json
      {
