@@ -6,23 +6,23 @@ Il progetto consiste in un servizio web chiamato Movies API, progettato per gest
 
 Gli utenti possono registrarsi, autenticarsi e compiere varie operazioni, nello specifico:
 1. **Aggiungere un nuovo film**.
-2. **Aggiungere più film contemporaneamente (limite impostato a 200).**
-3. Eliminare un film specifico tramite Id.
-4. Eliminare tutti i film presenti nella libreria.
-5. Modificare un film tramite l'inserimento dell'Id specifico; nel caso di Id non presente, aggiunta del nuovo film all'interno della libreria.
-6. Cercare tramite Id uno specifico film.
-7. Richiedere l'intera libreria di film.
-8. Cercare uno specifico film tramite titolo.
-9. Cercare tutti i film di un determinato genere presenti nella libreria.
-10. Cercare tutti i film di uno specifico regista.
-11. Cercare tutti i film di uno specifico anno.
-12. Cercare tutti i film con una specifica lingua.
-13. Ordinare la libreria di film in ordine crescente o decrescente secondo la durata del film.
-14. Ordinare la libreria di film in ordine crescente o decrescente secondo l'Id di ogni film.
-15. Ordinare la libreria di film in ordine crescente o decrescente secondo il titolo del film.
-16. Ordinare la libreria di film in ordine crescente o decrescente secondo l'anno del film.
-17. Ordinare la libreria di film in ordine crescente o decrescente secondo il voto del film.
-18. Cercare tutti i film di una specifica decade.
+2. **Aggiungere più film contemporaneamente (limite impostato a 200)**.
+3. **Eliminare un film specifico tramite Id**.
+4. **Eliminare tutti i film presenti nella libreria**.
+5. **Modificare un film tramite l'inserimento dell'Id specifico; nel caso di Id non presente, aggiunta del nuovo film all'interno della libreria**.
+6. **Cercare tramite Id uno specifico film**.
+7. **Richiedere l'intera libreria di film**.
+8. **Cercare uno specifico film tramite titolo**.
+9. **Cercare tutti i film di un determinato genere presenti nella libreria**.
+10. **Cercare tutti i film di uno specifico regista**.
+11. **Cercare tutti i film di uno specifico anno**.
+12. **Cercare tutti i film con una specifica lingua**.
+13. **Ordinare la libreria di film in ordine crescente o decrescente secondo la durata del film**.
+14. **Ordinare la libreria di film in ordine crescente o decrescente secondo l'Id di ogni film**.
+15. **Ordinare la libreria di film in ordine crescente o decrescente secondo il titolo del film**.
+16. **Ordinare la libreria di film in ordine crescente o decrescente secondo l'anno del film**.
+17. **Ordinare la libreria di film in ordine crescente o decrescente secondo il voto del film**.
+18. **Cercare tutti i film di una specifica decade**.
 
 Inoltre è ovviamente possibile fare il logout ed è presente una richiesta per ottenere un access token non fresh utilizzando il refresh token ottenuto al momento del login.
 
@@ -34,7 +34,7 @@ Il servizio è stato sviluppato utilizzando Flask, un microframework per Python.
 Componenti software principali
 - Flask: utilizzato per gestire le richieste HTTP, definire i route e gestire la logica dell'applicazione.
 - Flask-smorest: estensione Flask utilizzata per la gestione dei blueprint. Utilizza inoltre abort per le risposte di errore. Inoltre utilizza marshmallow per definire gli schema, per la validazione e per la serializzazione(dati in uscita) e deserializzazione(dati in entrata) dei dati. Marshmallow usa gli schemi per validare automaticamente i dati e convertire oggetti Python in JSON.
-- SQLAlchemy: ORM(Object-Relational Mapping) utilizzato per interagire con il database, permette di mappare classi in Python in tabelle e colonne di database, e converte oggetti Python di quelle classi in righe specifiche. Quindi permette di rendere il codice più pulito, semplice e corto.
+- SQLAlchemy: ORM(Object-Relational Mapping) utilizzato per interagire con il database, permette di mappare classi in Python in tabelle e colonne di database, e converte oggetti Python di quelle classi in righe specifiche. Le operazioni sul database, come la creazione, lettura, aggiornamento e cancellazione (CRUD), vengono eseguite tramite SQLAlchemy, che traduce le operazioni Python in query SQL.
 - Flask-JWT-Extended: estensione utilizzata per implementare l'autenticazione basata su token JWT, garantendo la sicurezza delle comunicazioni tra client e server.
 
 Comunicazione tra componenti
@@ -43,7 +43,6 @@ Comunicazione tra componenti
 Tecnologie adottate
 - Docker: utilizzato per containerizzare l'applicazione, assicurando che possa essere eseguita in ambienti diversi senza problemi di compatibilità.
 - Render: piattaforma cloud utilizzata sia per l'hosting del database PostgreSQL che per il deployment dell'applicazione. Render fornisce integrazione continua, scalabilità automatica e un ambiente di produzione sicuro.
-- Insomnia: utilizzato per testare le funzionalità dell'API
 
 Librerie e moduli rilevanti
 - Flask-Migrate: utilizzato per gestire le migrazioni del database, permettendo di aggiornare lo schema del database in modo sicuro e senza perdita di dati.
@@ -61,7 +60,7 @@ Ulteriori informazioni
 - Il file blocklist.py viene utilizzato per fare lo store degli access token e dei refresh token non più validi. Il file refresh_token_store.py invece viene utilizzato per fare lo store momentaneo del refresh token. Sono stati utilizzati dei file locali per semplicità ma probabilmente questa non è la scelta migliore né la più sicura.
 
 # 3. Riferimento a eventuali dati o servizi esterni sfruttati
-Il progetto utilizza un database PostgreSQL ospitato su Render. Il database è accessibile tramite un URL specificato nel file .env e viene utilizzato per memorizzare i dati relativi agli utenti e ai film. Inoltre, il deployment del servizio è stato effettuato su Render, una piattaforma che facilita il deploy di applicazioni web con integrazione continua e scalabilità automatica.
+Il progetto utilizza un database PostgreSQL ospitato su Render. Il database è accessibile tramite un URL specificato nel file .env e viene utilizzato per memorizzare i dati relativi agli utenti e ai film. Inoltre, anche il deployment del servizio è stato effettuato su Render, una piattaforma che facilita il deployment di applicazioni web con integrazione continua e scalabilità automatica.
 
 # 4. Documentazione dell’API implementata (URL, dettagli delle richieste HTTP supportate, formato e codifica dei dati in input ed output, etc.)
 
@@ -441,6 +440,8 @@ sono stati utilizzati piani free sia per il deployment del web service sia per l
 Per quanto riguarda il database invece il piano free comporta la cancellazione dello stesso dopo 30 giorni se non si passa ad un piano a pagamento.
 
 # 6. Esempio descrittivo di utilizzo del servizio Web (sequenza di richieste/risposte HTTP di esempio, descrizione dei dati attesi/ottenuti)
+
+Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strumento Insomnia. Insomnia permette di inviare richieste HTTP e di osservare le risposte dell'API in modo dettagliato, facilitando il debugging e la verifica dei flussi di autenticazione, gestione degli errori, e operazioni CRUD (Create, Read, Update, Delete). Di seguito sono riportati alcuni esempi di richieste e risposte utilizzate per testare l'API.
 
 ### Esempio 1: Registrazione di un Nuovo Utente
 
