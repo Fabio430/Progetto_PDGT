@@ -5,8 +5,8 @@
 Il progetto consiste in un servizio web chiamato Movies API, progettato per gestire e fornire informazioni su una libreria virtuale di film.
 
 Gli utenti possono registrarsi, autenticarsi e compiere varie operazioni, nello specifico:
-1. Aggiungere un nuovo film.
-2. Aggiungere più film contemporaneamente (limite impostato a 200).
+1. **Aggiungere un nuovo film**.
+2. **Aggiungere più film contemporaneamente (limite impostato a 200).**
 3. Eliminare un film specifico tramite Id.
 4. Eliminare tutti i film presenti nella libreria.
 5. Modificare un film tramite l'inserimento dell'Id specifico; nel caso di Id non presente, aggiunta del nuovo film all'interno della libreria.
@@ -38,7 +38,7 @@ Componenti software principali
 - Flask-JWT-Extended: estensione utilizzata per implementare l'autenticazione basata su token JWT, garantendo la sicurezza delle comunicazioni tra client e server.
 
 Comunicazione tra componenti
-La comunicazione tra i vari componenti dell'applicazione avviene tramite HTTP. Il client invia richieste HTTP al server Flask, che processa queste richieste, interagisce con il database PostgreSQL tramite SQLAlchemy, e restituisce una risposta al client. Le API seguono lo stile RESTful, il che facilita l'integrazione con diversi tipi di client, come applicazioni web, mobile, o altri servizi.
+- La comunicazione tra i vari componenti dell'applicazione avviene tramite HTTP. Il client invia richieste HTTP al server Flask, che processa queste richieste, interagisce con il database PostgreSQL tramite SQLAlchemy, e restituisce una risposta al client. Le API seguono lo stile RESTful, il che facilita l'integrazione con diversi tipi di client, come applicazioni web, mobile, o altri servizi.
 
 Tecnologie adottate
 - Docker: utilizzato per containerizzare l'applicazione, assicurando che possa essere eseguita in ambienti diversi senza problemi di compatibilità.
@@ -58,7 +58,7 @@ Scelte implementative di rilievo
 - Autenticazione: basata su JWT, con configurazioni per access token e refresh token.
 
 Ulteriori informazioni
-Il file blocklist.py viene utilizzato per fare lo store degli access token e dei refresh token non più validi. Il file refresh_token_store.py invece viene utilizzato per fare lo store momentaneo del refresh token. Sono stati utilizzati dei file locali per semplicità ma probabilmente questa non è la scelta migliore né la più sicura.
+- Il file blocklist.py viene utilizzato per fare lo store degli access token e dei refresh token non più validi. Il file refresh_token_store.py invece viene utilizzato per fare lo store momentaneo del refresh token. Sono stati utilizzati dei file locali per semplicità ma probabilmente questa non è la scelta migliore né la più sicura.
 
 # 3. Riferimento a eventuali dati o servizi esterni sfruttati
 Il progetto utilizza un database PostgreSQL ospitato su Render. Il database è accessibile tramite un URL specificato nel file .env e viene utilizzato per memorizzare i dati relativi agli utenti e ai film. Inoltre, il deployment del servizio è stato effettuato su Render, una piattaforma che facilita il deploy di applicazioni web con integrazione continua e scalabilità automatica.
