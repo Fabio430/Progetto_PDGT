@@ -1,8 +1,10 @@
 - Nome: Fabio, cognome: Giannoccoli, matricola: 279044
 - Titolo del progetto: Movies API
 - Breve relazione:
-# 1. Descrizione del servizio implementato e del suo scopo
-Il progetto consiste in un servizio web chiamato Movies API, progettato per gestire e fornire informazioni su una libreria virtuale di film. Gli utenti possono registrarsi, autenticarsi e compiere varie operazioni, nello specifico:
+## 1. Descrizione del servizio implementato e del suo scopo
+Il progetto consiste in un servizio web chiamato Movies API, progettato per gestire e fornire informazioni su una libreria virtuale di film.
+
+Gli utenti possono registrarsi, autenticarsi e compiere varie operazioni, nello specifico:
 1. Aggiungere un nuovo film.
 2. Aggiungere più film contemporaneamente (limite impostato a 200).
 3. Eliminare un film specifico tramite Id.
@@ -23,6 +25,7 @@ Il progetto consiste in un servizio web chiamato Movies API, progettato per gest
 18. Cercare tutti i film di una specifica decade.
 
 Inoltre è ovviamente possibile fare il logout ed è presente una richiesta per ottenere un access token non fresh utilizzando il refresh token ottenuto al momento del login.
+
 Lo scopo del servizio è quello di permettere l'accesso e la gestione di una libreria virtuale di film in modo sicuro e strutturato.
 
 # 2. Descrizione di architettura e scelte implementative (componenti software, comunicazione tra componenti, tecnologie adottate, librerie, scelte implementative di rilievo, etc.)
