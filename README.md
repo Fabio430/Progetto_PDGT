@@ -21,6 +21,7 @@ Il progetto consiste in un servizio web chiamato Movies API, progettato per gest
 16. Ordinare la libreria di film in ordine crescente o decrescente secondo l'anno del film.
 17. Ordinare la libreria di film in ordine crescente o decrescente secondo il voto del film.
 18. Cercare tutti i film di una specifica decade.
+
 Inoltre è ovviamente possibile fare il logout ed è presente una richiesta per ottenere un access token non fresh utilizzando il refresh token ottenuto al momento del login.
 Lo scopo del servizio è quello di permettere l'accesso e la gestione di una libreria virtuale di film in modo sicuro e strutturato.
 
