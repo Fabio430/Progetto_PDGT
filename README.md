@@ -67,8 +67,8 @@ Il progetto utilizza un database PostgreSQL ospitato su Render. Il database è a
 URL web service: https://progetto-pdgt.onrender.com
 
 1. Endpoint: Registrazione Utente
-    - URL: '/register'
-    - Metodo HTTP: POST
+    - URL: `/register`
+    - Metodo HTTP: `POST`
     - Descrizione: Permette la registrazione di un nuovo utente.
     - Richiesta:
         - Headers:
@@ -83,78 +83,96 @@ URL web service: https://progetto-pdgt.onrender.com
     - Risposte:
         - Status Code: 201 Created
             - Corpo:
+            ```json
             {
                 "message": "User created successfully."
             }
+            ```
         - Status Code: 409 Conflict
             - Corpo:
+            ```json
             {
                 "message": "A user with that username already exists."
             }
+            ```
 2. Endpoint: Login Utente
-    - URL: '/login'
-    - Metodo HTTP: POST
+    - URL: `/login`
+    - Metodo HTTP: `POST`
     - Descrizione: Permette a un utente registrato di effettuare il login e ottenere un token JWT.
     - Richiesta:
         - Headers:
             - Content-Type: application/json
         - Corpo:
+        ```json
         {
             "username": "string",
             "password": "string"
         }
+        ```
     - Risposte:
         - Status Code: 200 OK
             - Corpo:
+            ```json
             {
                 "access_token": "string",
                 "refresh_token": "string"
             }
+            ```
         - Status Code: 401 Unauthorized
             - Corpo:
+            ```json
             {
                 "message": "Invalid credentials."
             }
+            ```
         - Content-Type: application/json
 
 3. Endpoint: Logout Utente
-    - URL: '/logout'
-    - Metodo HTTP: POST
+    - URL: `/logout`
+    - Metodo HTTP: `POST`
     - Descrizione: Invalida il token JWT dell'utente corrente e disconnette l'utente.
     - Richiesta:
         - Headers:
-            - Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>
+            - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
     - Risposte:
         - Status Code: 200 OK
             - Corpo:
+            ```json
             {
                 "message": "Successfully logged out."
             }
+            ```
         - Status Code: 401 Unauthorized
             - Corpo:
+            ```json
             {
                 "message": "Missing or invalid token."
             }
+            ```
         - Content-Type: application/json
 
 4. Endpoint: Token di accesso not fresh
-    - URL: '/refresh'
-    - Metodo HTTP: POST
+    - URL: `/refresh`
+    - Metodo HTTP: `POST`
     - Descrizione: Ottiene un nuovo token di accesso not fresh utilizzando un refresh token valido.
     - Richiesta:
         - Headers:
-            - Authorization: Bearer <JWT_REFRESH_TOKEN>
+            - Authorization: `Bearer <JWT_REFRESH_TOKEN>`
     - Risposte:
         - Status Code: 200 OK
             - Corpo:
+            ```json
             {
                 "access_token": "string"
             }
+            ```
         - Status Code: 401 Unauthorized
             - Corpo:
+            ```json
             {
                 "message": "Missing or invalid refresh token."
             }
+            ```
         - Content-Type: application/json
 
 1. Endpoint: Recupero Film per Decennio
@@ -162,7 +180,8 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Recupera un elenco di film filtrati per decennio.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers: 
+            - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `decade` (string, ad esempio `1990s`)
     - Risposte:
         - Status Code: `200 OK`
@@ -175,7 +194,8 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Ordina i film in base alla valutazione.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
         - Status Code: `200 OK`
@@ -187,7 +207,8 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Ordina i film in base all'anno di uscita.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
         - Status Code: `200 OK`
