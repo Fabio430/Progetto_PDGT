@@ -343,17 +343,17 @@ URL web service: https://progetto-pdgt.onrender.com
             - Content-Type: application/json
         - Corpo:
             - esempio:
-                ```json
-                {
-                    "director": "David Cronenberg",
-                    "genres": "Horror, Science-fiction",
-                    "original_language": "English",
-                    "runtime": "89 mins",
-                    "title": "Videodrome",
-                    "year": 1983,
-                    "rating": "5/5"
-		            }
-                ```
+            ```json
+            {
+                "director": "David Cronenberg",
+                "genres": "Horror, Science-fiction",
+                "original_language": "English",
+                "runtime": "89 mins",
+                "title": "Videodrome",
+                "year": 1983,
+                "rating": "5/5"
+		        }
+            ```
     - Risposte:
         - Status Code: `200 OK`
         - Status Code: `201 Created`
