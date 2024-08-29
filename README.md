@@ -338,6 +338,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
     - Risposte:
         - Status Code: `200 OK`
@@ -417,6 +418,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
     - Risposte:
         - Status Code: `200 OK`
@@ -463,35 +465,35 @@ URL web service: https://progetto-pdgt.onrender.com
                         "rating": "5/5"
                     },
                     {
-		                    "director": "George A. Romero",
-		                    "genres": "Horror, Thriller",
-		                    "id": 31,
-		                    "original_language": "English",
-		                    "rating": "5/5",
-		                    "runtime": "96 Mins",
-		                    "title": "Night Of The Living Dead",
-		                    "year": 1968
-	                  },
+                        "director": "George A. Romero",
+                        "genres": "Horror, Thriller",
+                        "id": 31,
+                        "original_language": "English",
+                        "rating": "5/5",
+                        "runtime": "96 Mins",
+                        "title": "Night Of The Living Dead",
+                        "year": 1968
+                    },
                     {
-		                    "director": "Elio Petri",
-		                    "genres": "Crime, Drama, Mystery",
-		                    "id": 55,
-		                    "original_language": "Italian",
-		                    "rating": "5/5",
-		                    "runtime": "115 Mins",
-		                    "title": "Investigation Of A Citizen Above Suspicion",
-		                    "year": 1970
-	                  },
+                        "director": "Elio Petri",
+                        "genres": "Crime, Drama, Mystery",
+                        "id": 55,
+                        "original_language": "Italian",
+                        "rating": "5/5",
+                        "runtime": "115 Mins",
+                        "title": "Investigation Of A Citizen Above Suspicion",
+                        "year": 1970
+                    },
                     {
-		                    "director": "Katsuhiro Otomo",
-		                    "genres": "Animation, Action, Drama",
-		                    "id": 42,
-		                    "original_language": "Japanese",
-		                    "rating": "5/5",
-		                    "runtime": "124 Mins",
-		                    "title": "Akira",
-		                    "year": 1988
-	                  }
+                        "director": "Katsuhiro Otomo",
+                        "genres": "Animation, Action, Drama",
+                        "id": 42,
+                        "original_language": "Japanese",
+                        "rating": "5/5",
+                        "runtime": "124 Mins",
+                        "title": "Akira",
+                        "year": 1988
+                    }
                 ]
                 ```
     - Risposte:
