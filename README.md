@@ -345,13 +345,13 @@ URL web service: https://progetto-pdgt.onrender.com
           - esempio:
           ```json
           {
-           "director": "David Cronenberg",
-           "genres": "Horror, Science-fiction",
-           "original_language": "English",
-           "runtime": "89 mins",
-           "title": "Videodrome",
-           "year": 1983,
-           "rating": "5/5"
+              "director": "David Cronenberg",
+              "genres": "Horror, Science-fiction",
+              "original_language": "English",
+              "runtime": "89 mins",
+              "title": "Videodrome",
+              "year": 1983,
+              "rating": "5/5"
           }
           ```
     - Risposte:
