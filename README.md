@@ -62,7 +62,7 @@ Ulteriori informazioni
 ## 3. Riferimento a eventuali dati o servizi esterni sfruttati
 Il progetto utilizza un database PostgreSQL ospitato su Render. Il database è accessibile tramite un URL specificato nel file .env e viene utilizzato per memorizzare i dati relativi agli utenti e ai film. Inoltre, anche il deployment del servizio è stato effettuato su Render, una piattaforma che facilita il deployment di applicazioni web con integrazione continua e scalabilità automatica.
 
-# 4. Documentazione dell’API implementata (URL, dettagli delle richieste HTTP supportate, formato e codifica dei dati in input ed output, etc.)
+## 4. Documentazione dell’API implementata (URL, dettagli delle richieste HTTP supportate, formato e codifica dei dati in input ed output, etc.)
 
 URL web service: https://progetto-pdgt.onrender.com
 
@@ -182,6 +182,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers: 
             - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+
               Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `decade` (string, ad esempio `1990s`)
     - Risposte:
@@ -197,6 +198,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
@@ -211,6 +213,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
@@ -225,6 +228,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
@@ -239,6 +243,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
@@ -253,6 +258,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
@@ -267,6 +273,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `original_language` (string, ad esempio `english`)
     - Risposte:
@@ -282,6 +289,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `year` (string, ad esempio `2011`)
     - Risposte:
@@ -296,6 +304,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `director` (string, ad esempio `David Cronenberg`)
     - Risposte:
@@ -310,6 +319,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `title` (string, ad esempio `Taxi driver`)
     - Risposte:
@@ -324,6 +334,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `genre` (string, ad esempio `crime`, `crime, drama`, ecc.)
     - Risposte:
