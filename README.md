@@ -181,7 +181,8 @@ URL web service: https://progetto-pdgt.onrender.com
     - Descrizione: Recupera un elenco di film filtrati per decennio.
     - Richiesta:
         - Headers: 
-            - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+            - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+              Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `decade` (string, ad esempio `1990s`)
     - Risposte:
         - Status Code: `200 OK`
@@ -195,7 +196,8 @@ URL web service: https://progetto-pdgt.onrender.com
     - Descrizione: Ordina i film in base alla valutazione.
     - Richiesta:
         - Headers:
-          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
         - Status Code: `200 OK`
@@ -208,7 +210,8 @@ URL web service: https://progetto-pdgt.onrender.com
     - Descrizione: Ordina i film in base all'anno di uscita.
     - Richiesta:
         - Headers:
-          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
         - Status Code: `200 OK`
@@ -220,8 +223,9 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Ordina i film in base al titolo.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
-                   `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
         - Status Code: `200 OK`
@@ -233,7 +237,9 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Ordina i film in base all'ID.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
         - Status Code: `200 OK`
@@ -245,7 +251,9 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Ordina i film in base alla durata.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
         - Status Code: `200 OK`
@@ -257,7 +265,9 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Recupera i film per la lingua originale specificata.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `original_language` (string, ad esempio `english`)
     - Risposte:
         - Status Code: `200 OK`
@@ -270,7 +280,9 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Recupera i film per l'anno specificato.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `year` (string, ad esempio `2011`)
     - Risposte:
         - Status Code: `200 OK`
@@ -282,7 +294,9 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Recupera i film per il regista specificato.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `director` (string, ad esempio `David Cronenberg`)
     - Risposte:
         - Status Code: `200 OK`
@@ -294,7 +308,9 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Recupera i film per il titolo specificato.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `title` (string, ad esempio `Taxi driver`)
     - Risposte:
         - Status Code: `200 OK`
@@ -306,7 +322,9 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Recupera i film per il genere specificato.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `genre` (string, ad esempio `crime`, `crime, drama`, ecc.)
     - Risposte:
         - Status Code: `200 OK`
@@ -318,7 +336,9 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Recupera un film per ID.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
     - Risposte:
         - Status Code: `200 OK`
         - Status Code: `404 Not Found`
@@ -328,7 +348,8 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `DELETE`
     - Descrizione: Elimina un film per ID.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
     - Risposte:
         - Status Code: `200 OK`
         - Status Code: `404 Not Found`
@@ -339,7 +360,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Descrizione: Aggiorna un film per ID.
     - Richiesta:
         - Headers:
-            - `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>`
+            - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
             - Content-Type: application/json
         - Corpo:
           - esempio:
@@ -367,21 +388,21 @@ URL web service: https://progetto-pdgt.onrender.com
     - Descrizione: Aggiunge un nuovo film.
     - Richiesta:
         - Headers:
-            - `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>`
+            - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
             - Content-Type: application/json
         - Corpo:
             - esempio:
-                ```json
-		            {
-                    "director": "David Lynch",
-                    "genres": "Mystery, Thriller",
-                    "original_language": "English",
-                    "runtime": "134 mins",
-                    "title": "Lost Highway",
-                    "year": 1997,
-                    "rating": "5/5"
-		            }
-                ```
+            ```json
+            {
+                "director": "David Lynch",
+                "genres": "Mystery, Thriller",
+                "original_language": "English",
+                "runtime": "134 mins",
+                "title": "Lost Highway",
+                "year": 1997,
+                "rating": "5/5"
+            }
+            ```
     - Risposte:
         - Status Code: `201 Created`
         - Status Code: `409 Conflict`
@@ -394,7 +415,9 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Recupera tutti i film.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
     - Risposte:
         - Status Code: `200 OK`
         - Content-Type: application/json
@@ -403,7 +426,8 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `DELETE`
     - Descrizione: Elimina tutti i film.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>`
+        - Headers:
+          - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
     - Risposte:
         - Status Code: `200 OK`
         - Status Code: `404 Not Found`
@@ -414,7 +438,7 @@ URL web service: https://progetto-pdgt.onrender.com
     - Descrizione: Aggiunge una lista di film.
     - Richiesta:
         - Headers: 
-            - `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>`
+            - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
             - Content-Type: application/json
         - Corpo:
             - Esempio:
@@ -438,7 +462,36 @@ URL web service: https://progetto-pdgt.onrender.com
                         "year": 1968,
                         "rating": "5/5"
                     },
-                    ...
+                    {
+		                    "director": "George A. Romero",
+		                    "genres": "Horror, Thriller",
+		                    "id": 31,
+		                    "original_language": "English",
+		                    "rating": "5/5",
+		                    "runtime": "96 Mins",
+		                    "title": "Night Of The Living Dead",
+		                    "year": 1968
+	                  },
+                    {
+		                    "director": "Elio Petri",
+		                    "genres": "Crime, Drama, Mystery",
+		                    "id": 55,
+		                    "original_language": "Italian",
+		                    "rating": "5/5",
+		                    "runtime": "115 Mins",
+		                    "title": "Investigation Of A Citizen Above Suspicion",
+		                    "year": 1970
+	                  },
+                    {
+		                    "director": "Katsuhiro Otomo",
+		                    "genres": "Animation, Action, Drama",
+		                    "id": 42,
+		                    "original_language": "Japanese",
+		                    "rating": "5/5",
+		                    "runtime": "124 Mins",
+		                    "title": "Akira",
+		                    "year": 1988
+	                  }
                 ]
                 ```
     - Risposte:
