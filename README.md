@@ -81,14 +81,14 @@ URL web service: https://progetto-pdgt.onrender.com
         }
         ```
     - Risposte:
-        - Status Code: 201 Created
+        - Status Code: `201 Created`
             - Corpo:
             ```json
             {
                 "message": "User created successfully."
             }
             ```
-        - Status Code: 409 Conflict
+        - Status Code: `409 Conflict`
             - Corpo:
             ```json
             {
@@ -110,7 +110,7 @@ URL web service: https://progetto-pdgt.onrender.com
         }
         ```
     - Risposte:
-        - Status Code: 200 OK
+        - Status Code: `200 OK`
             - Corpo:
             ```json
             {
@@ -118,7 +118,7 @@ URL web service: https://progetto-pdgt.onrender.com
                 "refresh_token": "string"
             }
             ```
-        - Status Code: 401 Unauthorized
+        - Status Code: `401 Unauthorized`
             - Corpo:
             ```json
             {
@@ -135,14 +135,14 @@ URL web service: https://progetto-pdgt.onrender.com
         - Headers:
             - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
     - Risposte:
-        - Status Code: 200 OK
+        - Status Code: `200 OK`
             - Corpo:
             ```json
             {
                 "message": "Successfully logged out."
             }
             ```
-        - Status Code: 401 Unauthorized
+        - Status Code: `401 Unauthorized`
             - Corpo:
             ```json
             {
@@ -159,14 +159,14 @@ URL web service: https://progetto-pdgt.onrender.com
         - Headers:
             - Authorization: `Bearer <JWT_REFRESH_TOKEN>`
     - Risposte:
-        - Status Code: 200 OK
+        - Status Code: `200 OK`
             - Corpo:
             ```json
             {
                 "access_token": "string"
             }
             ```
-        - Status Code: 401 Unauthorized
+        - Status Code: `401 Unauthorized`
             - Corpo:
             ```json
             {
@@ -220,7 +220,8 @@ URL web service: https://progetto-pdgt.onrender.com
     - Metodo HTTP: `GET`
     - Descrizione: Ordina i film in base al titolo.
     - Richiesta:
-        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
+        - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+                   `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
         - Status Code: `200 OK`
@@ -314,7 +315,7 @@ URL web service: https://progetto-pdgt.onrender.com
 
 12. Endpoint: Recupero, Eliminazione o Aggiornamento Film per ID
     - URL: `/movie/<string:movie_id>`
-    - Metodo HTTP: GET
+    - Metodo HTTP: `GET`
     - Descrizione: Recupera un film per ID.
     - Richiesta:
         - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
@@ -324,7 +325,7 @@ URL web service: https://progetto-pdgt.onrender.com
         - Content-Type: application/json
 
     - URL: `/movie/<string:movie_id>`
-    - Metodo HTTP: DELETE
+    - Metodo HTTP: `DELETE`
     - Descrizione: Elimina un film per ID.
     - Richiesta:
         - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>`
@@ -334,7 +335,7 @@ URL web service: https://progetto-pdgt.onrender.com
         - Content-Type: application/json
 
     - URL: `/movie/<string:movie_id>`
-    - Metodo HTTP: PUT
+    - Metodo HTTP: `PUT`
     - Descrizione: Aggiorna un film per ID.
     - Richiesta:
         - Headers:
@@ -342,6 +343,7 @@ URL web service: https://progetto-pdgt.onrender.com
             - Content-Type: application/json
         - Corpo:
             - esempio:
+                ```json
                 {
                     "director": "David Cronenberg",
                     "genres": "Horror, Science-fiction",
@@ -350,7 +352,8 @@ URL web service: https://progetto-pdgt.onrender.com
                     "title": "Videodrome",
                     "year": 1983,
                     "rating": "5/5"
-		        }
+		            }
+                ```
     - Risposte:
         - Status Code: `200 OK`
         - Status Code: `201 Created`
@@ -368,7 +371,8 @@ URL web service: https://progetto-pdgt.onrender.com
             - Content-Type: application/json
         - Corpo:
             - esempio:
-		        {
+                ```json
+		            {
                     "director": "David Lynch",
                     "genres": "Mystery, Thriller",
                     "original_language": "English",
@@ -376,7 +380,8 @@ URL web service: https://progetto-pdgt.onrender.com
                     "title": "Lost Highway",
                     "year": 1997,
                     "rating": "5/5"
-		        }
+		            }
+                ```
     - Risposte:
         - Status Code: `201 Created`
         - Status Code: `409 Conflict`
@@ -386,7 +391,7 @@ URL web service: https://progetto-pdgt.onrender.com
 
 14. Endpoint: Gestione della Lista dei Film
     - URL: `/movielist`
-    - Metodo HTTP: GET
+    - Metodo HTTP: `GET`
     - Descrizione: Recupera tutti i film.
     - Richiesta:
         - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure  `Authorization: Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
@@ -395,7 +400,7 @@ URL web service: https://progetto-pdgt.onrender.com
         - Content-Type: application/json
 
     - URL: `/movielist`
-    - Metodo HTTP: DELETE
+    - Metodo HTTP: `DELETE`
     - Descrizione: Elimina tutti i film.
     - Richiesta:
         - Headers: `Authorization: Bearer <JWT_FRESH_ACCESS_TOKEN>`
@@ -405,7 +410,7 @@ URL web service: https://progetto-pdgt.onrender.com
         - Content-Type: application/json
 
     - URL: `/movielist`
-    - Metodo HTTP: POST
+    - Metodo HTTP: `POST`
     - Descrizione: Aggiunge una lista di film.
     - Richiesta:
         - Headers: 
@@ -413,6 +418,7 @@ URL web service: https://progetto-pdgt.onrender.com
             - Content-Type: application/json
         - Corpo:
             - Esempio:
+                ```json
                 [
                     {
                         "director": "Federico Fellini",
@@ -434,13 +440,14 @@ URL web service: https://progetto-pdgt.onrender.com
                     },
                     ...
                 ]
+                ```
     - Risposte:
         - Status Code: `201 Created`
         - Status Code: `207 Multi-Status`
         - Status Code: `400 Bad Request`
         - Content-Type: application/json
 
-# 5. Descrizione delle modalità della messa online del servizio
+## 5. Descrizione delle modalità della messa online del servizio
 Il servizio è stato distribuito utilizzando Render, una piattaforma di hosting cloud che semplifica il deployment di applicazioni web e database. Il processo di messa online ha incluso i seguenti passaggi:
 
 1. **Configurazione del Database**:
