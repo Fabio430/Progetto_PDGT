@@ -74,10 +74,12 @@ URL web service: https://progetto-pdgt.onrender.com
         - Headers:
             - Content-Type: application/json
         - Corpo:
+        '''json
         {
             "username": "string",
             "password": "string"
         }
+        '''
     - Risposte:
         - Status Code: 201 Created
             - Corpo:
