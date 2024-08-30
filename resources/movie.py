@@ -167,9 +167,13 @@ class MovieGenre(MethodView):
     def get(self, genre):
         # genre = genre.title()
         movies = MovieModel.query.filter(or_(MovieModel.genres == genre,
-                                             MovieModel.genres.startswith(f"{genre},"),
-                                             MovieModel.genres.contains(f",{genre},"), 
-                                             MovieModel.genres.endswith(f",{genre}"))).all()
+                                             MovieModel.genres.startswith(f"{genre},%"),
+                                             MovieModel.genres.contains(f"%,{genre},%"), 
+                                             MovieModel.genres.endswith(f"%,{genre}"))).all()
+        # movies = MovieModel.query.filter(or_(MovieModel.genres == genre,
+        #                                      MovieModel.genres.startswith(f"{genre},"),
+        #                                      MovieModel.genres.contains(f",{genre},"), 
+        #                                      MovieModel.genres.endswith(f",{genre}"))).all()
         if movies:
             return movies
         abort(404, message="Movies not found for the specified genre")
