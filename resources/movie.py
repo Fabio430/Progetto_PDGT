@@ -168,8 +168,8 @@ class MovieGenre(MethodView):
         genre = genre.title().strip()
         movies = MovieModel.query.filter(or_(MovieModel.genres == genre,
                                              MovieModel.genres.like(f"{genre},%"),
-                                             MovieModel.genres.like(f"%,{genre}"), 
-                                             MovieModel.genres.like(f"%,{genre},%"))).all()
+                                             MovieModel.genres.like(f"%, {genre}"), 
+                                             MovieModel.genres.like(f"%, {genre},%"))).all()
         # movies = MovieModel.query.filter(or_(MovieModel.genres == genre,
         #                                      MovieModel.genres.startswith(f"{genre},"),
         #                                      MovieModel.genres.contains(f",{genre},"), 
