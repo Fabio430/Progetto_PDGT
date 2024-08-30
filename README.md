@@ -545,12 +545,12 @@ Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strum
    - **Metodo HTTP**: `POST`
    - **URL**: `/register`
    - **Headers**:
-      - `Content-Type: application/json`
+      - Content-Type: `application/json`
    - **Corpo della Richiesta**:
      ```json
      {
-       "username": "new_user",
-       "password": "secure_password"
+         "username": "david",
+         "password": "1234"
      }
      ```
 2. **Risposta**:
@@ -558,7 +558,7 @@ Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strum
    - **Corpo della Risposta**:
      ```json
      {
-       "message": "User created successfully."
+         "message": "User created successfully."
      }
      ```
 
@@ -568,14 +568,12 @@ Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strum
    - **Metodo HTTP**: `POST`
    - **URL**: `/login`
    - **Headers**:
-     ```
-     Content-Type: application/json
-     ```
+     - Content-Type: `application/json`
    - **Corpo della Richiesta**:
      ```json
      {
-       "username": "new_user",
-       "password": "secure_password"
+         "username": "david",
+         "password": "1234"
      }
      ```
 2. **Risposta**:
@@ -583,8 +581,8 @@ Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strum
    - **Corpo della Risposta**:
      ```json
      {
-       "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-       "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+         "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+         "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
      }
      ```
 
@@ -594,15 +592,13 @@ Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strum
    - **Metodo HTTP**: `POST`
    - **URL**: `/logout`
    - **Headers**:
-     ```
-     Authorization: Bearer <JWT_ACCESS_TOKEN>
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
    - **Status Code**: `200 OK`
    - **Corpo della Risposta**:
      ```json
      {
-       "message": "Successfully logged out"
+         "message": "Successfully logged out"
      }
      ```
 
@@ -612,15 +608,13 @@ Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strum
    - **Metodo HTTP**: `POST`
    - **URL**: `/refresh`
    - **Headers**:
-     ```
-     Authorization: Bearer <JWT_REFRESH_TOKEN>
-     ```
+     - Authorization: `Bearer <JWT_REFRESH_TOKEN>`
 2. **Risposta**:
    - **Status Code**: `200 OK`
    - **Corpo della Risposta**:
      ```json
      {
-       "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+         "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
      }
      ```
 
@@ -632,15 +626,15 @@ Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strum
 
 2. **Login Utente**:
    - **Dati Attesi**: Username e password validi come input JSON.
-   - **Dati Ottenuti**: Due token JWT (access token e refresh token) in caso di successo.
+   - **Dati Ottenuti**: Due token JWT (fresh access token e refresh token) in caso di successo.
 
 3. **Logout Utente**:
-   - **Dati Attesi**: Un token di accesso valido per autenticare la richiesta.
+   - **Dati Attesi**: Un fresh access token valido per autenticare la richiesta.
    - **Dati Ottenuti**: Messaggio di conferma che l'utente è stato disconnesso.
 
 4. **Aggiornamento del Token**:
    - **Dati Attesi**: Un refresh token valido per autenticare la richiesta.
-   - **Dati Ottenuti**: Un nuovo token di accesso JWT.
+   - **Dati Ottenuti**: Un nuovo access token not fresh JWT.
 
 Questi esempi descrivono situazioni in cui le richieste non hanno successo, spiegando i motivi degli errori e mostrando i messaggi di risposta che l'API fornisce agli utenti.
 
@@ -650,14 +644,12 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Metodo HTTP**: `POST`
    - **URL**: `/register`
    - **Headers**: 
-     ```
-     Content-Type: application/json
-     ```
+     - Content-Type: `application/json`
    - **Corpo della Richiesta**:
      ```json
      {
-       "username": "existing_user",
-       "password": "another_password"
+         "username": "david",
+         "password": "4567"
      }
      ```
 2. **Risposta**:
@@ -665,7 +657,7 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Corpo della Risposta**:
      ```json
      {
-       "message": "A user with that username already exists."
+         "message": "A user with that username already exists."
      }
      ```
 
@@ -675,14 +667,12 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Metodo HTTP**: `POST`
    - **URL**: `/login`
    - **Headers**:
-     ```
-     Content-Type: application/json
-     ```
+     - Content-Type: `application/json`
    - **Corpo della Richiesta**:
      ```json
      {
-       "username": "new_user",
-       "password": "wrong_password"
+         "username": "robert",
+         "password": "pass4567"
      }
      ```
 2. **Risposta**:
@@ -690,7 +680,7 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Corpo della Risposta**:
      ```json
      {
-       "message": "Invalid credentials."
+         "message": "Invalid credentials."
      }
      ```
 
@@ -700,33 +690,31 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Metodo HTTP**: `POST`
    - **URL**: `/logout`
    - **Headers**:
-     ```
-     Authorization: Bearer <INVALID_JWT_ACCESS_TOKEN>
-     ```
+     - Authorization: `Bearer <INVALID_JWT_ACCESS_TOKEN>`
 2. **Risposta**:
    - **Status Code**: `401 Unauthorized`
    - **Corpo della Risposta**:
      ```json
      {
-       "message": "Missing or invalid token."
+         "error": "invalid_token",
+         "message": "Signature verification failed."
      }
      ```
 
 ### Esempio 4: Aggiornamento del Token con Refresh Token Non Valido
 
-1. **Richiesta**: Tentativo di ottenere un nuovo access token con un refresh token non valido o scaduto
+1. **Richiesta**: Tentativo di ottenere un nuovo access token non fresh con un refresh token non valido
    - **Metodo HTTP**: `POST`
    - **URL**: `/refresh`
    - **Headers**:
-     ```
-     Authorization: Bearer <INVALID_JWT_REFRESH_TOKEN>
-     ```
+     - Authorization: `Bearer <INVALID_JWT_REFRESH_TOKEN>`
 2. **Risposta**:
    - **Status Code**: `401 Unauthorized`
    - **Corpo della Risposta**:
      ```json
      {
-       "message": "Missing or invalid refresh token."
+         "error": "invalid_token",
+         "message": "Signature verification failed."
      }
      ```
 
@@ -737,16 +725,16 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Dati Ottenuti**: Messaggio di errore che indica che l'utente esiste già.
 
 2. **Login con Credenziali Non Valide**:
-   - **Dati Attesi**: Credenziali non valide (username o password errati).
+   - **Dati Attesi**: Credenziali non valide (username e/o password errati).
    - **Dati Ottenuti**: Messaggio di errore che indica credenziali non valide.
 
 3. **Logout Senza Token Valido**:
-   - **Dati Attesi**: Token JWT mancante o non valido.
-   - **Dati Ottenuti**: Messaggio di errore che indica la mancanza o l'invalidità del token.
+   - **Dati Attesi**: Token JWT non valido.
+   - **Dati Ottenuti**: Messaggio di errore che indica l'invalidità del token.
 
 4. **Aggiornamento del Token con Refresh Token Non Valido**:
-   - **Dati Attesi**: Refresh token mancante, scaduto, o non valido.
-   - **Dati Ottenuti**: Messaggio di errore che indica la mancanza o l'invalidità del refresh token.
+   - **Dati Attesi**: Refresh token non valido.
+   - **Dati Ottenuti**: Messaggio di errore che indica l'invalidità del refresh token.
 
 Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestione dei film, mostrando come interagire con l'API e i dati attesi e ottenuti in ciascun caso.
 
@@ -756,34 +744,44 @@ Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestio
    - **Metodo HTTP**: `GET`
    - **URL**: `/movie/decade/1990s`
    - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            
+       Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
    - **Status Code**: `200 OK`
    - **Corpo della Risposta**:
      ```json
      [
-       {
-         "id": 1,
-         "title": "Pulp Fiction",
-         "director": "Quentin Tarantino",
-         "year": 1994,
-         "genres": "Crime, Drama",
-         "runtime": "154 min",
-         "original_language": "English",
-         "rating": "8.9"
-       },
-       {
-         "id": 2,
-         "title": "The Matrix",
-         "director": "Lana Wachowski, Lilly Wachowski",
-         "year": 1999,
-         "genres": "Action, Sci-Fi",
-         "runtime": "136 min",
-         "original_language": "English",
-         "rating": "8.7"
-       }
+         {
+             "director": "Krzysztof Kieślowski",
+             "genres": "Drama, Music",
+             "id": 15,
+             "original_language": "French",
+             "rating": "5/5",
+             "runtime": "98 Mins",
+             "title": "Three Colours: Blue",
+             "year": 1993
+         },
+         {
+             "director": "John Woo",
+             "genres": "Action, Crime, Thriller",
+             "id": 16,
+             "original_language": "Cantonese",
+             "rating": "5/5",
+             "runtime": "128 Mins",
+             "title": "Hard Boiled",
+             "year": 1992
+         },
+         {
+             "director": "Martin Scorsese",
+             "genres": "Crime, Drama",
+             "id": 17,
+             "original_language": "English",
+             "rating": "5/5",
+             "runtime": "146 Mins",
+             "title": "Goodfellas",
+             "year": 1990
+         }
      ]
      ```
 
@@ -793,37 +791,47 @@ Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestio
    - **Metodo HTTP**: `GET`
    - **URL**: `/movie/rating/sorting/desc`
    - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            
+       Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
    - **Status Code**: `200 OK`
    - **Corpo della Risposta**:
      ```json
      [
-       {
-         "id": 3,
-         "title": "The Godfather",
-         "director": "Francis Ford Coppola",
-         "year": 1972,
-         "genres": "Crime, Drama",
-         "runtime": "175 min",
-         "original_language": "English",
-         "rating": "9.2"
-       },
-       {
-         "id": 4,
-         "title": "The Dark Knight",
-         "director": "Christopher Nolan",
-         "year": 2008,
-         "genres": "Action, Crime, Drama",
-         "runtime": "152 min",
-         "original_language": "English",
-         "rating": "9.0"
-       }
+         {
+             "director": "David Cronenberg",
+             "genres": "Horror, Science-Fiction",
+             "id": 1,
+             "original_language": "English",
+             "rating": "5/5",
+             "runtime": "89 Mins",
+             "title": "Videodrome",
+             "year": 1983
+         },
+         {
+             "director": "David Lynch",
+             "genres": "Horror, Experimental",
+             "id": 2,
+             "original_language": "English",
+             "rating": "5/5",
+             "runtime": "89 Mins",
+             "title": "Eraserhead",
+             "year": 1977
+         },
+         {
+             "director": "John Carpenter",
+             "genres": "Horror, Science-Fiction, Mystery",
+             "id": 169,
+             "original_language": "English",
+             "rating": "5/5",
+             "runtime": "109 Mins",
+             "title": "The Thing",
+             "year": 1982
+         }
      ]
      ```
-
+SONO ARRIVATO QUI
 ### Esempio 3: Recupero Film per Genere
 
 1. **Richiesta**: Recuperare tutti i film del genere "Sci-Fi"

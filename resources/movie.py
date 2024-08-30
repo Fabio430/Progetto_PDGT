@@ -165,7 +165,7 @@ class MovieGenre(MethodView):
     @blp.response(200, MovieSchema(many=True))
     @jwt_required(fresh=False)
     def get(self, genre):
-        genre = genre.title()
+        # genre = genre.title()
         movies = MovieModel.query.filter(or_(MovieModel.genres == genre,
                                              MovieModel.genres.startswith(f"{genre},"),
                                              MovieModel.genres.contains(f",{genre},"), 
