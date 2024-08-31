@@ -142,7 +142,11 @@ class MovieDirector(MethodView):
     @jwt_required(fresh=False)
     def get(self, director):
         director = director.title()
-        movies = MovieModel.query.filter(MovieModel.director == director).all()
+        movies = MovieModel.query.filter(or_(MovieModel.director == director,
+                                             MovieModel.director.startswith(f"{director},"),
+                                             MovieModel.director.contains(f", {director},"), 
+                                             MovieModel.director.endswith(f", {director}"))).all()
+        # movies = MovieModel.query.filter(MovieModel.director == director).all()
         if movies:
             return movies
         abort(404, message="Movies not found for the specified director")
@@ -165,7 +169,6 @@ class MovieGenre(MethodView):
     @blp.response(200, MovieSchema(many=True))
     @jwt_required(fresh=False)
     def get(self, genre):
-        # genre = genre.title().strip()
         genre = genre.title()
         # movies = MovieModel.query.filter(or_(MovieModel.genres == genre,
         #                                      MovieModel.genres.like(f"{genre},%"),
