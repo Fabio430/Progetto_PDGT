@@ -1077,7 +1077,7 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Dati Attesi**: ID del film non presente nel database.
    - **Dati Ottenuti**: Messaggio di errore che indica che il film non è stato trovato.
 
-SONO ARRIVATO QUI
+
 ### Esempio 1: Aggiunta di una Lista di Film all'Endpoint `/movielist`
 
 1. **Richiesta**: Aggiungere una lista di nuovi film al database
