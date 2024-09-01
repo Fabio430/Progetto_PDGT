@@ -831,41 +831,51 @@ Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestio
          }
      ]
      ```
-SONO ARRIVATO QUI
+
 ### Esempio 3: Recupero Film per Genere
 
-1. **Richiesta**: Recuperare tutti i film del genere "Sci-Fi"
+1. **Richiesta**: Recuperare tutti i film del genere "Science-Fiction"
    - **Metodo HTTP**: `GET`
-   - **URL**: `/movie/genre/Sci-Fi`
-   - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     ```
+   - **URL**: `/movie/genre/Science-Fiction`
+   - **Headers**:
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            
+       Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
    - **Status Code**: `200 OK`
    - **Corpo della Risposta**:
      ```json
      [
-       {
-         "id": 5,
-         "title": "Interstellar",
-         "director": "Christopher Nolan",
-         "year": 2014,
-         "genres": "Adventure, Drama, Sci-Fi",
-         "runtime": "169 min",
-         "original_language": "English",
-         "rating": "8.6"
-       },
-       {
-         "id": 6,
-         "title": "Blade Runner 2049",
-         "director": "Denis Villeneuve",
-         "year": 2017,
-         "genres": "Action, Drama, Mystery, Sci-Fi",
-         "runtime": "164 min",
-         "original_language": "English",
-         "rating": "8.0"
-       }
+         {
+             "director": "David Cronenberg",
+             "genres": "Horror, Science-Fiction",
+             "id": 1,
+             "original_language": "English",
+             "rating": "5/5",
+             "runtime": "89 Mins",
+             "title": "Videodrome",
+             "year": 1983
+         },
+         {
+             "director": "Terry Gilliam",
+             "genres": "Drama, Science-Fiction",
+             "id": 20,
+             "original_language": "English",
+             "rating": "5/5",
+             "runtime": "132 Mins",
+             "title": "Brazil",
+             "year": 1985
+         },
+         {
+             "director": "John Carpenter",
+             "genres": "Horror, Science-Fiction, Mystery",
+             "id": 169,
+             "original_language": "English",
+             "rating": "5/5",
+             "runtime": "109 Mins",
+             "title": "The Thing",
+             "year": 1982
+         }
      ]
      ```
 
@@ -875,20 +885,18 @@ SONO ARRIVATO QUI
    - **Metodo HTTP**: `POST`
    - **URL**: `/addmovie`
    - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     Content-Type: application/json
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
+     - Content-Type: `application/json`
    - **Corpo della Richiesta**:
      ```json
      {
-       "title": "Inception",
-       "director": "Christopher Nolan",
-       "year": 2010,
-       "genres": "Action, Sci-Fi, Thriller",
-       "runtime": "148 min",
-       "original_language": "English",
-       "rating": "8.8"
+         "director": "Dario Argento",
+         "genres": "Horror, Mystery",
+         "original_language": "Italian",
+         "rating": "5/5",
+         "runtime": "99 Mins",
+         "title": "Suspiria",
+         "year": 1977
      }
      ```
 2. **Risposta**:
@@ -896,14 +904,14 @@ SONO ARRIVATO QUI
    - **Corpo della Risposta**:
      ```json
      {
-       "id": 7,
-       "title": "Inception",
-       "director": "Christopher Nolan",
-       "year": 2010,
-       "genres": "Action, Sci-Fi, Thriller",
-       "runtime": "148 min",
-       "original_language": "English",
-       "rating": "8.8"
+         "director": "Dario Argento",
+         "genres": "Horror, Mystery",
+         "id": 26,
+         "original_language": "Italian",
+         "rating": "5/5",
+         "runtime": "99 Mins",
+         "title": "Suspiria",
+         "year": 1977
      }
      ```
 
@@ -913,15 +921,13 @@ SONO ARRIVATO QUI
    - **Metodo HTTP**: `DELETE`
    - **URL**: `/movie/7`
    - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
    - **Status Code**: `200 OK`
    - **Corpo della Risposta**:
      ```json
      {
-       "message": "Movie deleted"
+         "message": "Movie deleted"
      }
      ```
 
@@ -940,7 +946,7 @@ SONO ARRIVATO QUI
    - **Dati Ottenuti**: Lista di film del genere specificato.
 
 4. **Aggiunta di un Nuovo Film**:
-   - **Dati Attesi**: Informazioni dettagliate del film nel corpo della richiesta.
+   - **Dati Attesi**: Informazioni riguardanti il film da aggiungere nel corpo della richiesta.
    - **Dati Ottenuti**: I dati del film appena creato.
 
 5. **Eliminazione di un Film per ID**:
@@ -956,15 +962,15 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Metodo HTTP**: `GET`
    - **URL**: `/movie/decade/19905`
    - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            
+       Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
    - **Status Code**: `400 Bad Request`
    - **Corpo della Risposta**:
      ```json
      {
-       "message": "Invalid decade format"
+         "message": "Invalid decade format"
      }
      ```
 
@@ -972,66 +978,64 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
 
 1. **Richiesta**: Tentativo di ordinare i film con una direzione di ordinamento non valida
    - **Metodo HTTP**: `GET`
-   - **URL**: `/movie/rating/sorting/invalid_direction`
+   - **URL**: `/movie/rating/sorting/descsd`
    - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            
+       Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
    - **Status Code**: `400 Bad Request`
    - **Corpo della Risposta**:
      ```json
      {
-       "message": "Error, invalid sort direction. Use 'asc' or 'desc'."
+         "message": "Error, invalid sort direction. Use 'asc' or 'desc'."
      }
      ```
 
-### Esempio 3: Recupero Film per Genere Non Esistente
+### Esempio 3: Recupero Film per Genere Non Esistente o stringa non valida
 
-1. **Richiesta**: Tentativo di recuperare film per un genere non esistente nel database
+1. **Richiesta**: Tentativo di recuperare film per un genere non esistente nel database o per una stringa non valida
    - **Metodo HTTP**: `GET`
-   - **URL**: `/movie/genre/UnknownGenre`
+   - **URL**: `/movie/genre/dramasadad`
    - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
+            
+       Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
    - **Status Code**: `404 Not Found`
    - **Corpo della Risposta**:
      ```json
      {
-       "message": "Movies not found for the specified genre"
+         "message": "Movies not found for the specified genre"
      }
      ```
 
-### Esempio 4: Aggiunta di un Film con Dati Non Validi
+### Esempio 4: Aggiunta di un Film già presente nel database
 
-1. **Richiesta**: Tentativo di aggiungere un nuovo film con dati non validi
+1. **Richiesta**: Tentativo di aggiungere un film già presente all'interno del database
    - **Metodo HTTP**: `POST`
    - **URL**: `/addmovie`
    - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     Content-Type: application/json
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
+     - Content-Type: `application/json`
    - **Corpo della Richiesta**:
      ```json
      {
-       "title": "New Movie",
-       "director": "Invalid Director Name",
-       "year": 1800,
-       "genres": "Unknown Genre",
-       "runtime": "not_a_number min",
-       "original_language": "Invalid Language",
-       "rating": "Invalid Rating"
+         "director": "George A. Romero",
+         "title": "Dawn of the Dead",
+         "genres": "Horror, Science-fiction",
+         "original_language": "English",
+         "runtime": "127 mins",
+         "year": 1978,
+         "rating": "5/5"
      }
      ```
 2. **Risposta**:
-   - **Status Code**: `400 Bad Request`
+   - **Status Code**: `409 Conflict`
    - **Corpo della Risposta**:
      ```json
      {
-       "message": "The year is not correct"
+         "message": "This movie already exists"
      }
      ```
 
@@ -1041,15 +1045,13 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Metodo HTTP**: `DELETE`
    - **URL**: `/movie/9999`
    - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
    - **Status Code**: `404 Not Found`
    - **Corpo della Risposta**:
      ```json
      {
-       "message": "Movie not found"
+         "message": "Not Found"
      }
      ```
 
@@ -1060,53 +1062,78 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Dati Ottenuti**: Messaggio di errore che indica un formato di decennio non valido.
 
 2. **Ordinamento Film con Direzione Errata**:
-   - **Dati Attesi**: Direzione di ordinamento non valida (`invalid_direction`).
+   - **Dati Attesi**: Direzione di ordinamento non valida.
    - **Dati Ottenuti**: Messaggio di errore che indica un parametro di ordinamento non valido.
 
-3. **Recupero Film per Genere Non Esistente**:
-   - **Dati Attesi**: Parametro di un genere non presente nel database.
+3. **Recupero Film per Genere Non Esistente o stringa non valida**:
+   - **Dati Attesi**: Parametro di un genere non presente nel database o una stringa non valida.
    - **Dati Ottenuti**: Messaggio di errore che indica che non sono stati trovati film per il genere specificato.
 
-4. **Aggiunta di un Film con Dati Non Validi**:
-   - **Dati Attesi**: Dati del film non validi nel corpo della richiesta.
-   - **Dati Ottenuti**: Messaggio di errore che indica quali campi sono invalidi.
+4. **Aggiunta di un Film già presente nel database**:
+   - **Dati Attesi**: Film già presente all'interno del database.
+   - **Dati Ottenuti**: Messaggio di errore che indica che il film esiste già.
 
 5. **Eliminazione di un Film con ID Non Esistente**:
    - **Dati Attesi**: ID del film non presente nel database.
    - **Dati Ottenuti**: Messaggio di errore che indica che il film non è stato trovato.
 
-
+SONO ARRIVATO QUI
 ### Esempio 1: Aggiunta di una Lista di Film all'Endpoint `/movielist`
 
 1. **Richiesta**: Aggiungere una lista di nuovi film al database
    - **Metodo HTTP**: `POST`
    - **URL**: `/movielist`
    - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     Content-Type: application/json
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
+     - Content-Type: `application/json`
    - **Corpo della Richiesta**:
      ```json
      [
-       {
-         "title": "Inception",
-         "director": "Christopher Nolan",
-         "year": 2010,
-         "genres": "Action, Sci-Fi, Thriller",
-         "runtime": "148 min",
-         "original_language": "English",
-         "rating": "8.8"
-       },
-       {
-         "title": "The Matrix",
-         "director": "Lana Wachowski, Lilly Wachowski",
-         "year": 1999,
-         "genres": "Action, Sci-Fi",
-         "runtime": "136 min",
-         "original_language": "English",
-         "rating": "8.7"
-       }
+         {
+             "director": "Bong Joon-ho",
+             "title": "Memories of Murder",
+             "genres": "Crime, Drama, Thriller",
+             "original_language": "Korean",
+             "runtime": "132 mins",
+             "year": 2003,
+             "rating": "5/5"
+         },
+         {
+             "director": "Stanley Kubrick",
+             "title": "Eyes Wide Shut",
+             "genres": "Drama, Mystery, Thriller",
+             "original_language": "English",
+             "runtime": "159 mins",
+             "year": 1999,
+             "rating": "5/5"
+         },
+         {
+             "director": "Quentin Tarantino",
+             "title": "Pulp Fiction",
+             "genres": "Crime, Drama",
+             "original_language": "English",
+             "runtime": "154 mins",
+             "year": 1994,
+             "rating": "5/5"
+         },
+         {
+             "director": "Katsuhiro Otomo",
+             "title": "Akira",
+             "genres": "Animation, Action, Drama",
+             "original_language": "Japanese",
+             "runtime": "124 mins",
+             "year": 1988,
+             "rating": "5/5"
+         },
+         {
+             "director": "Akira Kurosawa",
+             "title": "Ran",
+             "genres": "Action, Drama, War",
+             "original_language": "Japanese",
+             "runtime": "162 mins",
+             "year": 1985,
+             "rating": "5/5"
+         }
      ]
      ```
 2. **Risposta**:
@@ -1116,60 +1143,115 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
      {
        "movies": [
          {
-           "id": 1,
-           "title": "Inception",
-           "director": "Christopher Nolan",
-           "year": 2010,
-           "genres": "Action, Sci-Fi, Thriller",
-           "runtime": "148 min",
-           "original_language": "English",
-           "rating": "8.8"
+             "director": "Bong Joon-ho",
+             "title": "Memories of Murder",
+             "id": 1,
+             "genres": "Crime, Drama, Thriller",
+             "original_language": "Korean",
+             "runtime": "132 mins",
+             "year": 2003,
+             "rating": "5/5"
          },
          {
-           "id": 2,
-           "title": "The Matrix",
-           "director": "Lana Wachowski, Lilly Wachowski",
-           "year": 1999,
-           "genres": "Action, Sci-Fi",
-           "runtime": "136 min",
-           "original_language": "English",
-           "rating": "8.7"
+             "director": "Stanley Kubrick",
+             "title": "Eyes Wide Shut",
+             "id": 2,
+             "genres": "Drama, Mystery, Thriller",
+             "original_language": "English",
+             "runtime": "159 mins",
+             "year": 1999,
+             "rating": "5/5"
+         },
+         {
+             "director": "Quentin Tarantino",
+             "title": "Pulp Fiction",
+             "id": 3,
+             "genres": "Crime, Drama",
+             "original_language": "English",
+             "runtime": "154 mins",
+             "year": 1994,
+             "rating": "5/5"
+         },
+         {
+             "director": "Katsuhiro Otomo",
+             "title": "Akira",
+             "id": 4,
+             "genres": "Animation, Action, Drama",
+             "original_language": "Japanese",
+             "runtime": "124 mins",
+             "year": 1988,
+             "rating": "5/5"
+         },
+         {
+             "director": "Akira Kurosawa",
+             "title": "Ran",
+             "id": 5,
+             "genres": "Action, Drama, War",
+             "original_language": "Japanese",
+             "runtime": "162 mins",
+             "year": 1985,
+             "rating": "5/5"
          }
        ]
      }
      ```
 
-### Esempio 2: Aggiunta di una Lista di Film con Errori all'Endpoint `/movielist`
+### Esempio 2: Aggiunta di una Lista di Film con alcuni film già presenti nel database o con dati non validi `/movielist`
 
-1. **Richiesta**: Aggiungere una lista di nuovi film con alcuni dati non validi
+1. **Richiesta**: Aggiungere una lista di nuovi film con alcuni film già presenti nel database o con dati non validi
    - **Metodo HTTP**: `POST`
    - **URL**: `/movielist`
    - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     Content-Type: application/json
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
+     - Content-Type: `application/json`
    - **Corpo della Richiesta**:
      ```json
      [
-       {
-         "title": "Inception",
-         "director": "Christopher Nolan",
-         "year": 2010,
-         "genres": "Action, Sci-Fi, Thriller",
-         "runtime": "148 min",
-         "original_language": "English",
-         "rating": "8.8"
-       },
-       {
-         "title": "Unknown Film",
-         "director": "Invalid Director",
-         "year": 1800,
-         "genres": "Unknown Genre",
-         "runtime": "not_a_number min",
-         "original_language": "Invalid Language",
-         "rating": "Invalid Rating"
-       }
+         {
+             "director": "Bong Joon-ho",
+             "title": "Memories of Murder",
+             "genres": "Crime, Drama, Thriller",
+             "original_language": "Korean",
+             "runtime": "132 mins",
+             "year": 2003,
+             "rating": "5/5"
+         },
+         {
+             "director": "Stanley Kubrick",
+             "title": "Eyes Wide Shut",
+             "genres": "Drama, Mystery,    Thriller",
+             "original_language": "English",
+             "runtime": "159 mins",
+             "year": 1999,
+             "rating": "5/5"
+         },
+         {
+             "director": "Quentin Tarantino",
+             "title": "Pulp Fiction",
+             "genres": "Crime, Drama",
+             "original_language": "English",
+             "runtime": "154 minssd",
+             "year": 1994,
+             "rating": "5/5"
+         },
+         {
+             "director": "Katsuhiro Otomo",
+             "title": "Akira",
+             "genres": "Animation, Action, Drama",
+             "original_language": "Japanese",
+             "runtime": "124 mins",
+             "year": 1988,
+             "rating": "5/54"
+         },
+         {
+             "director": "Akira Kurosawa",
+             "title": "Ran",
+             "genres": "Action, Drama, War",
+             "original_language": "Japanese",
+             "runtime": "162 mins",
+             "year": 1985,
+             "rating": "5/5"
+         }
      ]
      ```
 2. **Risposta**:
@@ -1177,55 +1259,83 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Corpo della Risposta**:
      ```json
      {
-       "movies": [
-         {
-           "id": 1,
-           "title": "Inception",
-           "director": "Christopher Nolan",
-           "year": 2010,
-           "genres": "Action, Sci-Fi, Thriller",
-           "runtime": "148 min",
-           "original_language": "English",
-           "rating": "8.8"
-         }
-       ],
-       "error_messages": [
-         "Error adding movie 'Unknown Film': The year is not correct"
-       ]
+      "error_messages": [
+        "Error adding movie 'Eyes Wide Shut': The format of the genres is not valid",
+        "Error adding movie 'Pulp Fiction': The format of the runtime is not valid",
+        "Error adding movie 'Akira': The format of the rating is not valid",
+        "Error adding movie 'Ran': This movie already exists"
+      ],
+      "movies": [
+        {
+          "director": "Bong Joon-Ho",
+          "genres": "Crime, Drama, Thriller",
+          "id": 339,
+          "original_language": "Korean",
+          "rating": "5/5",
+          "runtime": "132 Mins",
+          "title": "Memories Of Murder",
+          "year": 2003
+        }
+      ]
      }
      ```
 
-### Esempio 3: Aggiunta di una Lista di Film Non Validi all'Endpoint `/movielist`
+### Esempio 3: Aggiunta di una Lista di Film Non Validi o già presenti nel database all'Endpoint `/movielist`
 
-1. **Richiesta**: Tentativo di aggiungere una lista di nuovi film, tutti con dati non validi
+1. **Richiesta**: Tentativo di aggiungere una lista di nuovi film, tutti con dati non validi o già presenti nel database
    - **Metodo HTTP**: `POST`
    - **URL**: `/movielist`
    - **Headers**: 
-     ```
-     Authorization: Bearer <JWT_TOKEN>
-     Content-Type: application/json
-     ```
+     - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
+     - Content-Type: `application/json`
    - **Corpo della Richiesta**:
      ```json
      [
-       {
-         "title": "Invalid Movie 1",
-         "director": "Invalid Director 1",
-         "year": 1800,
-         "genres": "Unknown Genre",
-         "runtime": "not_a_number min",
-         "original_language": "Invalid Language",
-         "rating": "Invalid Rating"
-       },
-       {
-         "title": "Invalid Movie 2",
-         "director": "Invalid Director 2",
-         "year": 1801,
-         "genres": "Another Unknown Genre",
-         "runtime": "not_a_number min",
-         "original_language": "Another Invalid Language",
-         "rating": "Another Invalid Rating"
-       }
+         {
+             "director": "Bong Joon-ho",
+             "title": "Memories of Murder",
+             "genres": "Crime, Drama, Thriller",
+             "original_language": "Korean",
+             "runtime": "132 mins",
+             "year": 2003,
+             "rating": "5/5"
+         },
+         {
+             "director": "Stanley Kubrick",
+             "title": "Eyes Wide Shut",
+             "genres": "Drama, Mystery,    Thriller",
+             "original_language": "English",
+             "runtime": "159 mins",
+             "year": 1999,
+             "rating": "5/5"
+         },
+         {
+             "director": "Quentin Tarantino",
+             "title": "Pulp Fiction",
+             "genres": "Crime, Drama",
+             "original_language": "English",
+             "runtime": "154 minssd",
+             "year": 1994,
+             "rating": "5/5"
+         },
+         {
+             "director": "Katsuhiro Otomo",
+             "title": "Akira",
+             "genres": "Animation, Action, Drama",
+             "original_language": "Japanese",
+             "runtime": "124 mins",
+             "year": 1988,
+             "rating": "5/54"
+         },
+         {
+             "director": "Akira Kurosawa",
+             "title": "Ran",
+             "genres": "Action, Drama, War",
+             "original_language": "Japanese",
+             "runtime": "162 mins",
+             "year": 1985,
+             "rating": "5/5"
+         }
      ]
      ```
 2. **Risposta**:
@@ -1233,10 +1343,13 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Corpo della Risposta**:
      ```json
      {
-       "error_messages": [
-         "Error adding movie 'Invalid Movie 1': The year is not correct",
-         "Error adding movie 'Invalid Movie 2': The year is not correct"
-       ]
+      "error_messages": [
+        "Error adding movie 'Memories of Murder': This movie already exists",
+        "Error adding movie 'Eyes Wide Shut': The format of the genres is not valid",
+        "Error adding movie 'Pulp Fiction': The format of the runtime is not valid",
+        "Error adding movie 'Akira': The format of the rating is not valid",
+        "Error adding movie 'Ran': This movie already exists"
+      ]
      }
      ```
 
@@ -1246,10 +1359,10 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Dati Attesi**: Lista di film validi nel corpo della richiesta.
    - **Dati Ottenuti**: Lista di film appena aggiunti.
 
-2. **Aggiunta di una Lista di Film con Errori**:
-   - **Dati Attesi**: Lista di film con alcuni dati non validi.
-   - **Dati Ottenuti**: Lista di film aggiunti con messaggi di errore per quelli non validi.
+2. **Aggiunta di una Lista di Film con alcuni già presenti nel database o con dati non validi**:
+   - **Dati Attesi**: Lista di film con alcuni già presenti nel database o con dati non validi.
+   - **Dati Ottenuti**: Lista di film aggiunti con messaggi di errore per quelli già presenti nel database o con dati non validi.
 
-3. **Aggiunta di una lista di film con dati non validi**:
-- **Dati Attesi**: Lista di film non validi nel corpo della richiesta.
+3. **Aggiunta di una lista di film con dati non validi o già presenti nel database**:
+- **Dati Attesi**: Lista di film non validi o già presenti nel database nel corpo della richiesta.
 - **Dati Ottenuti**: Messaggi di errore che spiegano perché ogni film non è stato aggiunto.
