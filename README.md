@@ -59,7 +59,7 @@ Scelte implementative di rilievo
 Ulteriori informazioni
 - Il file blocklist.py viene utilizzato per fare lo store degli access token e dei refresh token non più validi. Il file refresh_token_store.py invece viene utilizzato per fare lo store momentaneo del refresh token. Sono stati utilizzati dei file locali per semplicità ma questa non è la scelta migliore né la più sicura.
 
-## 3. Riferimento a eventuali dati o servizi esterni sfruttati
+### 3. Riferimento a eventuali dati o servizi esterni sfruttati
 Il progetto utilizza un database PostgreSQL ospitato su Render. Il database è accessibile tramite un URL specificato nel file .env e viene utilizzato per memorizzare i dati relativi agli utenti e ai film. Inoltre, anche il deployment del servizio è stato effettuato su Render, una piattaforma che facilita il deployment di applicazioni web con integrazione continua e scalabilità automatica.
 
 ## 4. Documentazione dell’API implementata (URL, dettagli delle richieste HTTP supportate, formato e codifica dei dati in input ed output, etc.)
@@ -1361,5 +1361,5 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
    - **Dati ottenuti**: lista di film aggiunti con messaggi di errore per quelli già presenti nel database o con dati non validi.
 
 3. **Aggiunta di una lista di film con dati non validi o già presenti nel database**:
-- **Dati attesi**: lista di film non validi o già presenti nel database nel corpo della richiesta.
-- **Dati ottenuti**: messaggi di errore che spiegano perché ogni film non è stato aggiunto.
+   - **Dati attesi**: lista di film non validi o già presenti nel database nel corpo della richiesta.
+   - **Dati ottenuti**: messaggi di errore che spiegano perché ogni film non è stato aggiunto.
