@@ -28,10 +28,11 @@ def create_app(db_url=None):
     migrate = Migrate(app, db) # Initialize Flask-Migrate for handling database migrations
     api = Api(app) # Initialize the Flask-Smorest API
 
-     # JWT (JSON Web Token) configuration
+    # JWT (JSON Web Token) configuration
     app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
-    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=3) # Set token expiration time for access tokens, default is 15 minutes
-    app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(minutes=5) # Set token expiration time for refresh tokens, default is 30 days
+    # For trial purposes, the expiration times of the access token and refresh token are set to a few minutes
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=5) # Set token expiration time for access tokens, default is 15 minutes
+    app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(minutes=10) # Set token expiration time for refresh tokens, default is 30 days
     jwt = JWTManager(app) # Initialize the JWT manager
 
     # Check if a token is in the blocklist

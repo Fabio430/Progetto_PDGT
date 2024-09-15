@@ -17,14 +17,14 @@ Gli utenti possono registrarsi, autenticarsi e compiere varie operazioni, nello 
 10. **Cercare tutti i film di uno specifico regista**.
 11. **Cercare tutti i film di uno specifico anno**.
 12. **Cercare tutti i film con una specifica lingua**.
-13. **Ordinare la libreria di film in ordine crescente o decrescente secondo la durata del film**.
+13. **Ordinare la libreria di film in ordine crescente o decrescente secondo la durata dei film**.
 14. **Ordinare la libreria di film in ordine crescente o decrescente secondo l'Id di ogni film**.
-15. **Ordinare la libreria di film in ordine crescente o decrescente secondo il titolo del film**.
-16. **Ordinare la libreria di film in ordine crescente o decrescente secondo l'anno del film**.
-17. **Ordinare la libreria di film in ordine crescente o decrescente secondo il voto del film**.
+15. **Ordinare la libreria di film in ordine crescente o decrescente secondo il titolo dei film**.
+16. **Ordinare la libreria di film in ordine crescente o decrescente secondo l'anno dei film**.
+17. **Ordinare la libreria di film in ordine crescente o decrescente secondo il voto dei film**.
 18. **Cercare tutti i film di una specifica decade**.
 
-Inoltre è ovviamente possibile fare il logout ed è presente una richiesta per ottenere un access token non fresh utilizzando il refresh token ottenuto al momento del login.
+Inoltre è ovviamente possibile fare il logout, ed è presente una richiesta per ottenere un access token non fresh utilizzando il refresh token ottenuto al momento del login.
 
 Lo scopo del servizio è quello di permettere l'accesso e la gestione di una libreria virtuale di film in modo sicuro e strutturato.
 
@@ -33,7 +33,7 @@ Il servizio è stato sviluppato utilizzando Flask, un microframework per Python.
 
 Componenti software principali
 - Flask: utilizzato per gestire le richieste HTTP, definire i route e gestire la logica dell'applicazione.
-- Flask-smorest: estensione Flask utilizzata per la gestione dei blueprint. Utilizza inoltre abort per le risposte di errore. Inoltre utilizza marshmallow per definire gli schema, per la validazione e per la serializzazione(dati in uscita) e deserializzazione(dati in entrata) dei dati. Marshmallow usa gli schemi per validare automaticamente i dati e convertire oggetti Python in JSON.
+- Flask-smorest: estensione Flask utilizzata per la gestione dei blueprint. Utilizza abort per le risposte di errore. Inoltre utilizza marshmallow per definire gli schema, per la validazione e per la serializzazione(dati in uscita) e deserializzazione(dati in entrata) dei dati. Marshmallow usa gli schemi per validare automaticamente i dati e convertire oggetti Python in JSON.
 - SQLAlchemy: ORM(Object-Relational Mapping) utilizzato per interagire con il database, permette di mappare classi in Python in tabelle e colonne di database, e converte oggetti Python di quelle classi in righe specifiche. Le operazioni sul database, come la creazione, lettura, aggiornamento e cancellazione (CRUD), vengono eseguite tramite SQLAlchemy, che traduce le operazioni Python in query SQL.
 - Flask-JWT-Extended: estensione utilizzata per implementare l'autenticazione basata su token JWT, garantendo la sicurezza delle comunicazioni tra client e server.
 
@@ -57,7 +57,7 @@ Scelte implementative di rilievo
 - Autenticazione: basata su JWT, con configurazioni per access token e refresh token.
 
 Ulteriori informazioni
-- Il file blocklist.py viene utilizzato per fare lo store degli access token e dei refresh token non più validi. Il file refresh_token_store.py invece viene utilizzato per fare lo store momentaneo del refresh token. Sono stati utilizzati dei file locali per semplicità ma probabilmente questa non è la scelta migliore né la più sicura.
+- Il file blocklist.py viene utilizzato per fare lo store degli access token e dei refresh token non più validi. Il file refresh_token_store.py invece viene utilizzato per fare lo store momentaneo del refresh token. Sono stati utilizzati dei file locali per semplicità ma questa non è la scelta migliore né la più sicura.
 
 ## 3. Riferimento a eventuali dati o servizi esterni sfruttati
 Il progetto utilizza un database PostgreSQL ospitato su Render. Il database è accessibile tramite un URL specificato nel file .env e viene utilizzato per memorizzare i dati relativi agli utenti e ai film. Inoltre, anche il deployment del servizio è stato effettuato su Render, una piattaforma che facilita il deployment di applicazioni web con integrazione continua e scalabilità automatica.
@@ -66,13 +66,13 @@ Il progetto utilizza un database PostgreSQL ospitato su Render. Il database è a
 
 URL web service: https://progetto-pdgt.onrender.com
 
-1. Endpoint: Registrazione Utente
+1. Endpoint: registrazione utente
     - URL: `/register`
     - Metodo HTTP: `POST`
-    - Descrizione: Permette la registrazione di un nuovo utente.
+    - Descrizione: permette la registrazione di un nuovo utente.
     - Richiesta:
         - Headers:
-            - Content-Type: application/json
+            - Content-type: application/json
         - Corpo:
         ```json
         {
@@ -81,27 +81,27 @@ URL web service: https://progetto-pdgt.onrender.com
         }
         ```
     - Risposte:
-        - Status Code: `201 Created`
+        - Status code: `201 Created`
             - Corpo:
             ```json
             {
                 "message": "User created successfully."
             }
             ```
-        - Status Code: `409 Conflict`
+        - Status code: `409 Conflict`
             - Corpo:
             ```json
             {
                 "message": "A user with that username already exists."
             }
             ```
-2. Endpoint: Login Utente
+2. Endpoint: login utente
     - URL: `/login`
     - Metodo HTTP: `POST`
-    - Descrizione: Permette a un utente registrato di effettuare il login e ottenere un token JWT.
+    - Descrizione: permette a un utente registrato di effettuare il login e ottenere un token JWT.
     - Richiesta:
         - Headers:
-            - Content-Type: application/json
+            - Content-type: application/json
         - Corpo:
         ```json
         {
@@ -110,7 +110,7 @@ URL web service: https://progetto-pdgt.onrender.com
         }
         ```
     - Risposte:
-        - Status Code: `200 OK`
+        - Status code: `200 OK`
             - Corpo:
             ```json
             {
@@ -118,67 +118,67 @@ URL web service: https://progetto-pdgt.onrender.com
                 "refresh_token": "string"
             }
             ```
-        - Status Code: `401 Unauthorized`
+        - Status code: `401 Unauthorized`
             - Corpo:
             ```json
             {
                 "message": "Invalid credentials."
             }
             ```
-        - Content-Type: application/json
+        - Content-type: application/json
 
-3. Endpoint: Logout Utente
+3. Endpoint: logout utente
     - URL: `/logout`
     - Metodo HTTP: `POST`
-    - Descrizione: Invalida il token JWT dell'utente corrente e disconnette l'utente.
+    - Descrizione: invalida il token JWT dell'utente corrente e disconnette l'utente.
     - Richiesta:
         - Headers:
             - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
     - Risposte:
-        - Status Code: `200 OK`
+        - Status code: `200 OK`
             - Corpo:
             ```json
             {
                 "message": "Successfully logged out."
             }
             ```
-        - Status Code: `401 Unauthorized`
+        - Status code: `401 Unauthorized`
             - Corpo:
             ```json
             {
                 "message": "Missing or invalid token."
             }
             ```
-        - Content-Type: application/json
+        - Content-type: application/json
 
-4. Endpoint: Token di accesso not fresh
+4. Endpoint: token di accesso not fresh
     - URL: `/refresh`
     - Metodo HTTP: `POST`
-    - Descrizione: Ottiene un nuovo token di accesso not fresh utilizzando un refresh token valido.
+    - Descrizione: ottiene un nuovo token di accesso not fresh utilizzando un refresh token valido.
     - Richiesta:
         - Headers:
             - Authorization: `Bearer <JWT_REFRESH_TOKEN>`
     - Risposte:
-        - Status Code: `200 OK`
+        - Status code: `200 OK`
             - Corpo:
             ```json
             {
                 "access_token": "string"
             }
             ```
-        - Status Code: `401 Unauthorized`
+        - Status code: `401 Unauthorized`
             - Corpo:
             ```json
             {
                 "message": "Missing or invalid refresh token."
             }
             ```
-        - Content-Type: application/json
+        - Content-type: application/json
 
-1. Endpoint: Recupero Film per Decennio
+1. Endpoint: recupero film per decennio
     - URL: `/movie/decade/<string:decade>`
     - Metodo HTTP: `GET`
-    - Descrizione: Recupera un elenco di film filtrati per decennio.
+    - Descrizione: recupera un elenco di film filtrati per decennio.
     - Richiesta:
         - Headers: 
             - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
@@ -186,15 +186,15 @@ URL web service: https://progetto-pdgt.onrender.com
               Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `decade` (string, ad esempio `1990s`)
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `400 Bad Request`
-        - Status Code: `404 Not Found`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `400 Bad Request`
+        - Status code: `404 Not Found`
+        - Content-type: application/json
 
-2. Endpoint: Ordinamento Film per Valutazione
+2. Endpoint: ordinamento film per valutazione
     - URL: `/movie/rating/sorting/<string:sort_direction>`
     - Metodo HTTP: `GET`
-    - Descrizione: Ordina i film in base alla valutazione.
+    - Descrizione: ordina i film in base alla valutazione.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
@@ -202,14 +202,14 @@ URL web service: https://progetto-pdgt.onrender.com
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `400 Bad Request`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `400 Bad Request`
+        - Content-type: application/json
 
-3. Endpoint: Ordinamento Film per Anno
+3. Endpoint: ordinamento film per anno
     - URL: `/movie/year/sorting/<string:sort_direction>`
     - Metodo HTTP: `GET`
-    - Descrizione: Ordina i film in base all'anno di uscita.
+    - Descrizione: ordina i film in base all'anno di uscita.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
@@ -217,14 +217,14 @@ URL web service: https://progetto-pdgt.onrender.com
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `400 Bad Request`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `400 Bad Request`
+        - Content-type: application/json
 
-4. Endpoint: Ordinamento Film per Titolo
+4. Endpoint: ordinamento film per titolo
     - URL: `/movie/title/sorting/<string:sort_direction>`
     - Metodo HTTP: `GET`
-    - Descrizione: Ordina i film in base al titolo.
+    - Descrizione: ordina i film in base al titolo.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
@@ -232,14 +232,14 @@ URL web service: https://progetto-pdgt.onrender.com
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `400 Bad Request`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `400 Bad Request`
+        - Content-type: application/json
 
-5. Endpoint: Ordinamento Film per ID
+5. Endpoint: ordinamento film per ID
     - URL: `/movie/id/sorting/<string:sort_direction>`
     - Metodo HTTP: `GET`
-    - Descrizione: Ordina i film in base all'ID.
+    - Descrizione: ordina i film in base all'ID.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
@@ -247,14 +247,14 @@ URL web service: https://progetto-pdgt.onrender.com
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `400 Bad Request`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `400 Bad Request`
+        - Content-type: application/json
 
-6. Endpoint: Ordinamento Film per Durata
+6. Endpoint: ordinamento film per durata
     - URL: `/movie/runtime/sorting/<string:sort_direction>`
     - Metodo HTTP: `GET`
-    - Descrizione: Ordina i film in base alla durata.
+    - Descrizione: ordina i film in base alla durata.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
@@ -262,14 +262,14 @@ URL web service: https://progetto-pdgt.onrender.com
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `sort_direction` (string, `asc` o `desc`)
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `400 Bad Request`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `400 Bad Request`
+        - Content-type: application/json
 
-7. Endpoint: Recupero Film per Lingua Originale
+7. Endpoint: recupero film per lingua originale
     - URL: `/movie/original_language/<string:original_language>`
     - Metodo HTTP: `GET`
-    - Descrizione: Recupera i film per la lingua originale specificata.
+    - Descrizione: recupera i film per la lingua originale specificata.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
@@ -277,15 +277,14 @@ URL web service: https://progetto-pdgt.onrender.com
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `original_language` (string, ad esempio `english`)
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `404 Not Found`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `404 Not Found`
+        - Content-type: application/json
      
-
-8. Endpoint: Recupero Film per Anno
+8. Endpoint: recupero film per anno
     - URL: `/movie/year/<string:year>`
     - Metodo HTTP: `GET`
-    - Descrizione: Recupera i film per l'anno specificato.
+    - Descrizione: recupera i film per l'anno specificato.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
@@ -293,14 +292,14 @@ URL web service: https://progetto-pdgt.onrender.com
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `year` (string, ad esempio `2011`)
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `404 Not Found`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `404 Not Found`
+        - Content-type: application/json
 
-9. Endpoint: Recupero Film per Regista
+9. Endpoint: recupero film per regista
     - URL: `/movie/director/<string:director>`
     - Metodo HTTP: `GET`
-    - Descrizione: Recupera i film per il regista specificato.
+    - Descrizione: recupera i film per il regista specificato.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
@@ -308,14 +307,14 @@ URL web service: https://progetto-pdgt.onrender.com
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `director` (string, ad esempio `David Cronenberg`)
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `404 Not Found`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `404 Not Found`
+        - Content-type: application/json
 
-10. Endpoint: Recupero Film per Titolo
+10. Endpoint: recupero film per titolo
     - URL: `/movie/title/<string:title>`
     - Metodo HTTP: `GET`
-    - Descrizione: Recupera i film per il titolo specificato.
+    - Descrizione: recupera i film per il titolo specificato.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
@@ -323,14 +322,14 @@ URL web service: https://progetto-pdgt.onrender.com
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `title` (string, ad esempio `Taxi driver`)
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `404 Not Found`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `404 Not Found`
+        - Content-type: application/json
 
-11. Endpoint: Recupero Film per Genere
+11. Endpoint: recupero film per genere
     - URL: `/movie/genre/<string:genre>`
     - Metodo HTTP: `GET`
-    - Descrizione: Recupera i film per il genere specificato.
+    - Descrizione: recupera i film per il genere specificato.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
@@ -338,42 +337,42 @@ URL web service: https://progetto-pdgt.onrender.com
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
         - Parametri URL: `genre` (string, ad esempio `crime`, `crime, drama`, ecc.)
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `404 Not Found`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `404 Not Found`
+        - Content-type: application/json
 
-12. Endpoint: Recupero, Eliminazione o Aggiornamento Film per ID
+12. Endpoint: recupero, eliminazione o aggiornamento film per ID
     - URL: `/movie/<string:movie_id>`
     - Metodo HTTP: `GET`
-    - Descrizione: Recupera un film per ID.
+    - Descrizione: recupera un film per ID.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
             
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `404 Not Found`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `404 Not Found`
+        - Content-type: application/json
 
     - URL: `/movie/<string:movie_id>`
     - Metodo HTTP: `DELETE`
-    - Descrizione: Elimina un film per ID.
+    - Descrizione: elimina un film per ID.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `404 Not Found`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `404 Not Found`
+        - Content-type: application/json
 
     - URL: `/movie/<string:movie_id>`
     - Metodo HTTP: `PUT`
-    - Descrizione: Aggiorna un film per ID.
+    - Descrizione: aggiorna un film per ID.
     - Richiesta:
         - Headers:
             - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
-            - Content-Type: application/json
+            - Content-type: application/json
         - Corpo:
           - esempio:
           ```json
@@ -388,20 +387,20 @@ URL web service: https://progetto-pdgt.onrender.com
           }
           ```
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `201 Created`
-        - Status Code: `409 Conflict`
-        - Status Code: `400 Bad Request`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `201 Created`
+        - Status code: `409 Conflict`
+        - Status code: `400 Bad Request`
+        - Content-type: application/json
 
-13. Endpoint: Aggiunta di un Nuovo Film
+13. Endpoint: aggiunta di un nuovo film
     - URL: `/addmovie`
     - Metodo HTTP: `POST`
-    - Descrizione: Aggiunge un nuovo film.
+    - Descrizione: aggiunge un nuovo film.
     - Richiesta:
         - Headers:
             - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
-            - Content-Type: application/json
+            - Content-type: application/json
         - Corpo:
             - esempio:
             ```json
@@ -416,43 +415,43 @@ URL web service: https://progetto-pdgt.onrender.com
             }
             ```
     - Risposte:
-        - Status Code: `201 Created`
-        - Status Code: `409 Conflict`
-        - Status Code: `400 Bad Request`
-        - Status Code: `500 Internal Server Error`
-        - Content-Type: application/json
+        - Status code: `201 Created`
+        - Status code: `409 Conflict`
+        - Status code: `400 Bad Request`
+        - Status code: `500 Internal Server Error`
+        - Content-type: application/json
 
-14. Endpoint: Gestione della Lista dei Film
+14. Endpoint: gestione della lista dei film
     - URL: `/movielist`
     - Metodo HTTP: `GET`
-    - Descrizione: Recupera tutti i film.
+    - Descrizione: recupera tutti i film.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>` oppure
             
             Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
     - Risposte:
-        - Status Code: `200 OK`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Content-type: application/json
 
     - URL: `/movielist`
     - Metodo HTTP: `DELETE`
-    - Descrizione: Elimina tutti i film.
+    - Descrizione: elimina tutti i film.
     - Richiesta:
         - Headers:
           - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
     - Risposte:
-        - Status Code: `200 OK`
-        - Status Code: `404 Not Found`
-        - Content-Type: application/json
+        - Status code: `200 OK`
+        - Status code: `404 Not Found`
+        - Content-type: application/json
 
     - URL: `/movielist`
     - Metodo HTTP: `POST`
-    - Descrizione: Aggiunge una lista di film.
+    - Descrizione: aggiunge una lista di film.
     - Richiesta:
         - Headers: 
             - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
-            - Content-Type: application/json
+            - Content-type: application/json
         - Corpo:
             - Esempio:
                 ```json
@@ -508,45 +507,43 @@ URL web service: https://progetto-pdgt.onrender.com
                 ]
                 ```
     - Risposte:
-        - Status Code: `201 Created`
-        - Status Code: `207 Multi-Status`
-        - Status Code: `400 Bad Request`
-        - Content-Type: application/json
+        - Status code: `201 Created`
+        - Status code: `207 Multi-Status`
+        - Status code: `400 Bad Request`
+        - Content-type: application/json
 
 ## 5. Descrizione delle modalità della messa online del servizio
 Il servizio è stato distribuito utilizzando Render, una piattaforma di hosting cloud che semplifica il deployment di applicazioni web e database. Il processo di messa online ha incluso i seguenti passaggi:
 
-1. **Configurazione del Database**:
+1. **Configurazione del database**:
    - Il database PostgreSQL è stato configurato su Render e accessibile tramite un URL specificato nel file `.env`. Questo URL consente al servizio di interagire con il database per operazioni di lettura e scrittura.
 
-2. **Deployment dell'Applicazione**:
+2. **Deployment dell'applicazione**:
    - Il deployment dell'applicazione su Render è stato fatto utilizzando il `Dockerfile` presente nel progetto. Render rileva automaticamente il file Docker e costruisce l'immagine necessaria per eseguire il servizio.
    - Le variabili d'ambiente, tra cui `DATABASE_URL` e `JWT_SECRET_KEY`, sono state configurate su Render per garantire la sicurezza e il corretto funzionamento del servizio.
 
-3. **Integrazione Continua**:
-   - Render supporta l'integrazione continua (CI), permettendo il deploy automatico delle modifiche apportate al repository. Questo assicura che ogni aggiornamento venga applicato senza interruzioni del servizio.
+3. **Integrazione continua**:
+   - Render supporta l'integrazione continua (CI), permettendo il deployment automatico delle modifiche apportate al repository. Questo assicura che ogni aggiornamento venga applicato senza interruzioni del servizio.
 
-4. **Scalabilità e Monitoraggio**:
+4. **Scalabilità e monitoraggio**:
    - La piattaforma gestisce automaticamente la scalabilità delle risorse in base al traffico e al carico. Render fornisce anche strumenti di monitoraggio per tenere sotto controllo le prestazioni dell'applicazione e del database.
 
-Questa configurazione permette al servizio di rimanere online, sicuro, e in grado di gestire un numero variabile di richieste, con la possibilità di scalare automaticamente secondo le esigenze.
-
 **Piccola nota riguardante i piani utilizzati su Render**:
-sono stati utilizzati piani free sia per il deployment del web service sia per la configurazione del database. Per quanto riguarda il deployment questo comporta che in caso di inattività avviene uno spin down del servizio, il che significa che la richiesta successiva impiegherà diversi secondi per essere eseguita o potrebbe non andare a buon fine, dopo di che il servizio si riattiverà.
+Sono stati utilizzati piani free sia per il deployment del web service sia per la configurazione del database. Per quanto riguarda il deployment questo comporta che in caso di inattività avviene uno spin down del servizio, il che significa che la richiesta successiva impiegherà diversi secondi per essere eseguita o potrebbe non andare a buon fine, dopo di che il servizio si riattiverà.
 Per quanto riguarda il database invece il piano free comporta la cancellazione dello stesso dopo 30 giorni se non si passa ad un piano a pagamento.
 
 # 6. Esempio descrittivo di utilizzo del servizio Web (sequenza di richieste/risposte HTTP di esempio, descrizione dei dati attesi/ottenuti)
 
 Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strumento Insomnia. Insomnia permette di inviare richieste HTTP e di osservare le risposte dell'API in modo dettagliato, facilitando il debugging e la verifica dei flussi di autenticazione, gestione degli errori, e operazioni CRUD (Create, Read, Update, Delete). Di seguito sono riportati alcuni esempi di richieste e risposte utilizzate per testare l'API.
 
-### Esempio 1: Registrazione di un Nuovo Utente
+### Esempio 1: registrazione di un nuovo utente
 
-1. **Richiesta**: Registrazione di un nuovo utente
+1. **Richiesta**: registrazione di un nuovo utente
    - **Metodo HTTP**: `POST`
    - **URL**: `/register`
    - **Headers**:
-      - Content-Type: `application/json`
-   - **Corpo della Richiesta**:
+      - Content-type: `application/json`
+   - **Corpo della richiesta**:
      ```json
      {
          "username": "david",
@@ -554,22 +551,22 @@ Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strum
      }
      ```
 2. **Risposta**:
-   - **Status Code**: `201 Created`
-   - **Corpo della Risposta**:
+   - **Status code**: `201 Created`
+   - **Corpo della risposta**:
      ```json
      {
          "message": "User created successfully."
      }
      ```
 
-### Esempio 2: Login di un Utente
+### Esempio 2: login di un utente
 
-1. **Richiesta**: Autenticazione di un utente esistente
+1. **Richiesta**: autenticazione di un utente esistente
    - **Metodo HTTP**: `POST`
    - **URL**: `/login`
    - **Headers**:
-     - Content-Type: `application/json`
-   - **Corpo della Richiesta**:
+     - Content-type: `application/json`
+   - **Corpo della richiesta**:
      ```json
      {
          "username": "david",
@@ -577,8 +574,8 @@ Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strum
      }
      ```
 2. **Risposta**:
-   - **Status Code**: `200 OK`
-   - **Corpo della Risposta**:
+   - **Status code**: `200 OK`
+   - **Corpo della risposta**:
      ```json
      {
          "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -586,66 +583,66 @@ Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strum
      }
      ```
 
-### Esempio 3: Logout di un Utente
+### Esempio 3: logout di un utente
 
-1. **Richiesta**: Logout di un utente autenticato
+1. **Richiesta**: logout di un utente autenticato
    - **Metodo HTTP**: `POST`
    - **URL**: `/logout`
    - **Headers**:
      - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
-   - **Status Code**: `200 OK`
-   - **Corpo della Risposta**:
+   - **Status code**: `200 OK`
+   - **Corpo della risposta**:
      ```json
      {
          "message": "Successfully logged out"
      }
      ```
 
-### Esempio 4: Aggiornamento del Token di Accesso
+### Esempio 4: utilizzo del refresh token per ottenere un access token non fresh
 
-1. **Richiesta**: Ottenere un nuovo token di accesso utilizzando un refresh token
+1. **Richiesta**: ottenere un nuovo token di accesso non fresh utilizzando un refresh token
    - **Metodo HTTP**: `POST`
    - **URL**: `/refresh`
    - **Headers**:
      - Authorization: `Bearer <JWT_REFRESH_TOKEN>`
 2. **Risposta**:
-   - **Status Code**: `200 OK`
-   - **Corpo della Risposta**:
+   - **Status code**: `200 OK`
+   - **Corpo della risposta**:
      ```json
      {
          "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
      }
      ```
 
-### Descrizione dei Dati Attesi/Ottenuti
+### Descrizione dei dati attesi/ottenuti
 
-1. **Registrazione Utente**:
-   - **Dati Attesi**: Username e password forniti come input JSON.
-   - **Dati Ottenuti**: Messaggio di conferma che l'utente è stato creato con successo.
+1. **Registrazione utente**:
+   - **Dati attesi**: username e password forniti come input JSON.
+   - **Dati ottenuti**: messaggio di conferma che l'utente è stato creato con successo.
 
-2. **Login Utente**:
-   - **Dati Attesi**: Username e password validi come input JSON.
-   - **Dati Ottenuti**: Due token JWT (fresh access token e refresh token) in caso di successo.
+2. **Login utente**:
+   - **Dati attesi**: username e password validi come input JSON.
+   - **Dati ottenuti**: due token JWT (fresh access token e refresh token) in caso di successo.
 
-3. **Logout Utente**:
-   - **Dati Attesi**: Un fresh access token valido per autenticare la richiesta.
-   - **Dati Ottenuti**: Messaggio di conferma che l'utente è stato disconnesso.
+3. **Logout utente**:
+   - **Dati attesi**: un fresh access token valido per autenticare la richiesta.
+   - **Dati ottenuti**: messaggio di conferma che l'utente è stato disconnesso.
 
-4. **Aggiornamento del Token**:
-   - **Dati Attesi**: Un refresh token valido per autenticare la richiesta.
-   - **Dati Ottenuti**: Un nuovo access token not fresh JWT.
+4. **Refresh token**:
+   - **Dati attesi**: un refresh token valido per autenticare la richiesta.
+   - **Dati ottenuti**: un nuovo access token non fresh.
 
 Questi esempi descrivono situazioni in cui le richieste non hanno successo, spiegando i motivi degli errori e mostrando i messaggi di risposta che l'API fornisce agli utenti.
 
-### Esempio 1: Registrazione di un Utente con Username Duplicato
+### Esempio 1: registrazione di un utente con username duplicato
 
-1. **Richiesta**: Tentativo di registrare un nuovo utente con un username già esistente
+1. **Richiesta**: tentativo di registrare un nuovo utente con un username già esistente
    - **Metodo HTTP**: `POST`
    - **URL**: `/register`
    - **Headers**: 
-     - Content-Type: `application/json`
-   - **Corpo della Richiesta**:
+     - Content-type: `application/json`
+   - **Corpo della richiesta**:
      ```json
      {
          "username": "david",
@@ -653,22 +650,22 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
      }
      ```
 2. **Risposta**:
-   - **Status Code**: `409 Conflict`
-   - **Corpo della Risposta**:
+   - **Status code**: `409 Conflict`
+   - **Corpo della risposta**:
      ```json
      {
          "message": "A user with that username already exists."
      }
      ```
 
-### Esempio 2: Login con Credenziali Non Valide
+### Esempio 2: login con credenziali non valide
 
-1. **Richiesta**: Tentativo di login con credenziali errate
+1. **Richiesta**: tentativo di login con credenziali errate
    - **Metodo HTTP**: `POST`
    - **URL**: `/login`
    - **Headers**:
-     - Content-Type: `application/json`
-   - **Corpo della Richiesta**:
+     - Content-type: `application/json`
+   - **Corpo della richiesta**:
      ```json
      {
          "username": "robert",
@@ -676,24 +673,24 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
      }
      ```
 2. **Risposta**:
-   - **Status Code**: `401 Unauthorized`
-   - **Corpo della Risposta**:
+   - **Status code**: `401 Unauthorized`
+   - **Corpo della risposta**:
      ```json
      {
          "message": "Invalid credentials."
      }
      ```
 
-### Esempio 3: Logout Senza Token Valido
+### Esempio 3: logout senza token valido
 
-1. **Richiesta**: Tentativo di logout senza fornire un token JWT valido
+1. **Richiesta**: tentativo di logout senza fornire un token JWT valido
    - **Metodo HTTP**: `POST`
    - **URL**: `/logout`
    - **Headers**:
      - Authorization: `Bearer <INVALID_JWT_ACCESS_TOKEN>`
 2. **Risposta**:
-   - **Status Code**: `401 Unauthorized`
-   - **Corpo della Risposta**:
+   - **Status code**: `401 Unauthorized`
+   - **Corpo della risposta**:
      ```json
      {
          "error": "invalid_token",
@@ -701,16 +698,16 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
      }
      ```
 
-### Esempio 4: Aggiornamento del Token con Refresh Token Non Valido
+### Esempio 4: utilizzo di un refresh token Non Valido
 
-1. **Richiesta**: Tentativo di ottenere un nuovo access token non fresh con un refresh token non valido
+1. **Richiesta**: tentativo di ottenere un nuovo access token non fresh con un refresh token non valido
    - **Metodo HTTP**: `POST`
    - **URL**: `/refresh`
    - **Headers**:
      - Authorization: `Bearer <INVALID_JWT_REFRESH_TOKEN>`
 2. **Risposta**:
-   - **Status Code**: `401 Unauthorized`
-   - **Corpo della Risposta**:
+   - **Status code**: `401 Unauthorized`
+   - **Corpo della risposta**:
      ```json
      {
          "error": "invalid_token",
@@ -718,29 +715,29 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
      }
      ```
 
-### Descrizione dei Dati Attesi/Ottenuti in Caso di Errore
+### Descrizione dei dati attesi/ottenuti in caso di errore
 
-1. **Registrazione Utente con Username Duplicato**:
-   - **Dati Attesi**: Username che esiste già nel database.
-   - **Dati Ottenuti**: Messaggio di errore che indica che l'utente esiste già.
+1. **Registrazione utente con username duplicato**:
+   - **Dati attesi**: username che esiste già nel database.
+   - **Dati ottenuti**: messaggio di errore che indica che l'utente esiste già.
 
-2. **Login con Credenziali Non Valide**:
-   - **Dati Attesi**: Credenziali non valide (username e/o password errati).
-   - **Dati Ottenuti**: Messaggio di errore che indica credenziali non valide.
+2. **Login con credenziali non valide**:
+   - **Dati attesi**: credenziali non valide (username e/o password errati).
+   - **Dati ottenuti**: messaggio di errore che indica credenziali non valide.
 
-3. **Logout Senza Token Valido**:
-   - **Dati Attesi**: Token JWT non valido.
-   - **Dati Ottenuti**: Messaggio di errore che indica l'invalidità del token.
+3. **Logout senza token valido**:
+   - **Dati attesi**: token JWT non valido.
+   - **Dati ottenuti**: messaggio di errore che indica l'invalidità del token.
 
-4. **Aggiornamento del Token con Refresh Token Non Valido**:
-   - **Dati Attesi**: Refresh token non valido.
-   - **Dati Ottenuti**: Messaggio di errore che indica l'invalidità del refresh token.
+4. **Utilizzo di un refresh token non valido**:
+   - **Dati attesi**: refresh token non valido.
+   - **Dati ottenuti**: messaggio di errore che indica l'invalidità del refresh token.
 
-Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestione dei film, mostrando come interagire con l'API e i dati attesi e ottenuti in ciascun caso.
+Questi esempi coprono diversi scenari di utilizzo del servizio web per la gestione dei film, mostrando come interagire con l'API e i dati attesi e ottenuti in ciascun caso.
 
-### Esempio 1: Recupero Film per Decennio
+### Esempio 1: recupero film per decennio
 
-1. **Richiesta**: Recuperare i film di un decennio specifico
+1. **Richiesta**: recuperare i film di un decennio specifico
    - **Metodo HTTP**: `GET`
    - **URL**: `/movie/decade/1990s`
    - **Headers**: 
@@ -748,8 +745,8 @@ Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestio
             
        Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
-   - **Status Code**: `200 OK`
-   - **Corpo della Risposta**:
+   - **Status code**: `200 OK`
+   - **Corpo della risposta**:
      ```json
      [
          {
@@ -785,9 +782,9 @@ Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestio
      ]
      ```
 
-### Esempio 2: Ordinamento Film per Valutazione
+### Esempio 2: ordinamento film per valutazione
 
-1. **Richiesta**: Ordinare i film in base alla valutazione in ordine decrescente
+1. **Richiesta**: ordinare i film in base alla valutazione in ordine decrescente
    - **Metodo HTTP**: `GET`
    - **URL**: `/movie/rating/sorting/desc`
    - **Headers**: 
@@ -795,8 +792,8 @@ Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestio
             
        Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
-   - **Status Code**: `200 OK`
-   - **Corpo della Risposta**:
+   - **Status code**: `200 OK`
+   - **Corpo della risposta**:
      ```json
      [
          {
@@ -832,9 +829,9 @@ Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestio
      ]
      ```
 
-### Esempio 3: Recupero Film per Genere
+### Esempio 3: recupero film per genere
 
-1. **Richiesta**: Recuperare tutti i film del genere "Science-Fiction"
+1. **Richiesta**: recuperare tutti i film del genere "Science-Fiction"
    - **Metodo HTTP**: `GET`
    - **URL**: `/movie/genre/Science-Fiction`
    - **Headers**:
@@ -842,8 +839,8 @@ Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestio
             
        Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
-   - **Status Code**: `200 OK`
-   - **Corpo della Risposta**:
+   - **Status code**: `200 OK`
+   - **Corpo della risposta**:
      ```json
      [
          {
@@ -879,15 +876,15 @@ Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestio
      ]
      ```
 
-### Esempio 4: Aggiunta di un Nuovo Film
+### Esempio 4: aggiunta di un nuovo film
 
-1. **Richiesta**: Aggiungere un nuovo film al database
+1. **Richiesta**: aggiungere un nuovo film al database
    - **Metodo HTTP**: `POST`
    - **URL**: `/addmovie`
    - **Headers**: 
      - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
-     - Content-Type: `application/json`
-   - **Corpo della Richiesta**:
+     - Content-type: `application/json`
+   - **Corpo della richiesta**:
      ```json
      {
          "director": "Dario Argento",
@@ -900,8 +897,8 @@ Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestio
      }
      ```
 2. **Risposta**:
-   - **Status Code**: `201 Created`
-   - **Corpo della Risposta**:
+   - **Status code**: `201 Created`
+   - **Corpo della risposta**:
      ```json
      {
          "director": "Dario Argento",
@@ -915,50 +912,50 @@ Questi esempi coprono diversi scenari di utilizzo del servizio Web per la gestio
      }
      ```
 
-### Esempio 5: Eliminazione di un Film per ID
+### Esempio 5: eliminazione di un film per ID
 
-1. **Richiesta**: Eliminare un film specifico per ID
+1. **Richiesta**: eliminare un film specifico per ID
    - **Metodo HTTP**: `DELETE`
    - **URL**: `/movie/7`
    - **Headers**: 
      - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
-   - **Status Code**: `200 OK`
-   - **Corpo della Risposta**:
+   - **Status code**: `200 OK`
+   - **Corpo della risposta**:
      ```json
      {
          "message": "Movie deleted"
      }
      ```
 
-### Descrizione dei Dati Attesi/Ottenuti
+### Descrizione dei dati attesi/ottenuti
 
-1. **Recupero Film per Decennio**:
-   - **Dati Attesi**: Parametro del decennio come parte dell'URL.
-   - **Dati Ottenuti**: Lista di film usciti nel decennio specificato.
+1. **Recupero film per decennio**:
+   - **Dati attesi**: parametro del decennio come parte dell'URL.
+   - **Dati ottenuti**: lista di film usciti nel decennio specificato.
 
-2. **Ordinamento Film per Valutazione**:
-   - **Dati Attesi**: Parametro di ordinamento (`asc` o `desc`) come parte dell'URL.
-   - **Dati Ottenuti**: Lista di film ordinati per valutazione.
+2. **Ordinamento film per valutazione**:
+   - **Dati attesi**: parametro di ordinamento (`asc` o `desc`) come parte dell'URL.
+   - **Dati ottenuti**: lista di film ordinati per valutazione.
 
-3. **Recupero Film per Genere**:
-   - **Dati Attesi**: Parametro del genere come parte dell'URL.
-   - **Dati Ottenuti**: Lista di film del genere specificato.
+3. **Recupero film per genere**:
+   - **Dati attesi**: parametro del genere come parte dell'URL.
+   - **Dati ottenuti**: lista di film del genere specificato.
 
-4. **Aggiunta di un Nuovo Film**:
-   - **Dati Attesi**: Informazioni riguardanti il film da aggiungere nel corpo della richiesta.
-   - **Dati Ottenuti**: I dati del film appena creato.
+4. **Aggiunta di un nuovo film**:
+   - **Dati attesi**: informazioni riguardanti il film da aggiungere nel corpo della richiesta.
+   - **Dati ottenuti**: i dati del film appena creato.
 
-5. **Eliminazione di un Film per ID**:
-   - **Dati Attesi**: ID del film come parte dell'URL.
-   - **Dati Ottenuti**: Messaggio di conferma dell'eliminazione del film.
+5. **Eliminazione di un film per ID**:
+   - **Dati attesi**: ID del film come parte dell'URL.
+   - **Dati ottenuti**: messaggio di conferma dell'eliminazione del film.
 
 
 Questi esempi descrivono situazioni in cui le richieste non hanno successo, spiegando i motivi degli errori e mostrando i messaggi di risposta che l'API fornisce agli utenti.
 
-### Esempio 1: Recupero Film per Decennio con Formato Errato
+### Esempio 1: recupero film per decennio con formato errato
 
-1. **Richiesta**: Tentativo di recuperare film per un decennio con formato non valido
+1. **Richiesta**: tentativo di recuperare film per un decennio con formato non valido
    - **Metodo HTTP**: `GET`
    - **URL**: `/movie/decade/19905`
    - **Headers**: 
@@ -966,17 +963,17 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
             
        Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
-   - **Status Code**: `400 Bad Request`
-   - **Corpo della Risposta**:
+   - **Status code**: `400 Bad Request`
+   - **Corpo della risposta**:
      ```json
      {
          "message": "Invalid decade format"
      }
      ```
 
-### Esempio 2: Ordinamento Film con Direzione Errata
+### Esempio 2: ordinamento film con direzione errata
 
-1. **Richiesta**: Tentativo di ordinare i film con una direzione di ordinamento non valida
+1. **Richiesta**: tentativo di ordinare i film con una direzione di ordinamento non valida
    - **Metodo HTTP**: `GET`
    - **URL**: `/movie/rating/sorting/descsd`
    - **Headers**: 
@@ -984,17 +981,17 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
             
        Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
-   - **Status Code**: `400 Bad Request`
-   - **Corpo della Risposta**:
+   - **Status code**: `400 Bad Request`
+   - **Corpo della risposta**:
      ```json
      {
          "message": "Error, invalid sort direction. Use 'asc' or 'desc'."
      }
      ```
 
-### Esempio 3: Recupero Film per Genere Non Esistente o stringa non valida
+### Esempio 3: recupero film per genere non esistente o stringa non valida
 
-1. **Richiesta**: Tentativo di recuperare film per un genere non esistente nel database o per una stringa non valida
+1. **Richiesta**: tentativo di recuperare film per un genere non esistente nel database o per una stringa non valida
    - **Metodo HTTP**: `GET`
    - **URL**: `/movie/genre/dramasadad`
    - **Headers**: 
@@ -1002,23 +999,23 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
             
        Authorization: `Bearer <JWT_NOT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
-   - **Status Code**: `404 Not Found`
-   - **Corpo della Risposta**:
+   - **Status code**: `404 Not Found`
+   - **Corpo della risposta**:
      ```json
      {
          "message": "Movies not found for the specified genre"
      }
      ```
 
-### Esempio 4: Aggiunta di un Film già presente nel database
+### Esempio 4: aggiunta di un film già presente nel database
 
-1. **Richiesta**: Tentativo di aggiungere un film già presente all'interno del database
+1. **Richiesta**: tentativo di aggiungere un film già presente all'interno del database
    - **Metodo HTTP**: `POST`
    - **URL**: `/addmovie`
    - **Headers**: 
      - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
-     - Content-Type: `application/json`
-   - **Corpo della Richiesta**:
+     - Content-type: `application/json`
+   - **Corpo della richiesta**:
      ```json
      {
          "director": "George A. Romero",
@@ -1031,61 +1028,61 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
      }
      ```
 2. **Risposta**:
-   - **Status Code**: `409 Conflict`
-   - **Corpo della Risposta**:
+   - **Status code**: `409 Conflict`
+   - **Corpo della risposta**:
      ```json
      {
          "message": "This movie already exists"
      }
      ```
 
-### Esempio 5: Eliminazione di un Film con ID Non Esistente
+### Esempio 5: eliminazione di un film con ID non esistente
 
-1. **Richiesta**: Tentativo di eliminare un film con un ID non esistente nel database
+1. **Richiesta**: tentativo di eliminare un film con un ID non esistente nel database
    - **Metodo HTTP**: `DELETE`
    - **URL**: `/movie/9999`
    - **Headers**: 
      - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
 2. **Risposta**:
-   - **Status Code**: `404 Not Found`
-   - **Corpo della Risposta**:
+   - **Status code**: `404 Not Found`
+   - **Corpo della risposta**:
      ```json
      {
          "message": "Not Found"
      }
      ```
 
-### Descrizione dei Dati Attesi/Ottenuti in Caso di Errore
+### Descrizione dei dati attesi/ottenuti in caso di errore
 
-1. **Recupero Film per Decennio con Formato Errato**:
-   - **Dati Attesi**: Parametro del decennio con formato errato.
-   - **Dati Ottenuti**: Messaggio di errore che indica un formato di decennio non valido.
+1. **Recupero film per decennio con formato errato**:
+   - **Dati attesi**: parametro del decennio con formato errato.
+   - **Dati ottenuti**: messaggio di errore che indica un formato di decennio non valido.
 
-2. **Ordinamento Film con Direzione Errata**:
-   - **Dati Attesi**: Direzione di ordinamento non valida.
-   - **Dati Ottenuti**: Messaggio di errore che indica un parametro di ordinamento non valido.
+2. **Ordinamento film con direzione errata**:
+   - **Dati attesi**: direzione di ordinamento non valida.
+   - **Dati ottenuti**: messaggio di errore che indica un parametro di ordinamento non valido.
 
-3. **Recupero Film per Genere Non Esistente o stringa non valida**:
-   - **Dati Attesi**: Parametro di un genere non presente nel database o una stringa non valida.
-   - **Dati Ottenuti**: Messaggio di errore che indica che non sono stati trovati film per il genere specificato.
+3. **Recupero film per genere non esistente o stringa non valida**:
+   - **Dati attesi**: parametro di un genere non presente nel database o una stringa non valida.
+   - **Dati ottenuti**: messaggio di errore che indica che non sono stati trovati film per il genere specificato.
 
-4. **Aggiunta di un Film già presente nel database**:
-   - **Dati Attesi**: Film già presente all'interno del database.
-   - **Dati Ottenuti**: Messaggio di errore che indica che il film esiste già.
+4. **Aggiunta di un film già presente nel database**:
+   - **Dati attesi**: film già presente all'interno del database.
+   - **Dati ottenuti**: messaggio di errore che indica che il film esiste già.
 
-5. **Eliminazione di un Film con ID Non Esistente**:
-   - **Dati Attesi**: ID del film non presente nel database.
-   - **Dati Ottenuti**: Messaggio di errore che indica che il film non è stato trovato.
+5. **Eliminazione di un film con ID non esistente**:
+   - **Dati attesi**: ID del film non presente nel database.
+   - **Dati ottenuti**: messaggio di errore che indica che il film non è stato trovato.
 
 
-### Esempio 1: Aggiunta di una Lista di Film all'Endpoint `/movielist`
+### Esempio 1: aggiunta di una lista di film all'endpoint `/movielist`
 
-1. **Richiesta**: Aggiungere una lista di nuovi film al database
+1. **Richiesta**: aggiungere una lista di nuovi film al database
    - **Metodo HTTP**: `POST`
    - **URL**: `/movielist`
    - **Headers**: 
      - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
-     - Content-Type: `application/json`
+     - Content-type: `application/json`
    - **Corpo della Richiesta**:
      ```json
      [
@@ -1137,8 +1134,8 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
      ]
      ```
 2. **Risposta**:
-   - **Status Code**: `201 Created`
-   - **Corpo della Risposta**:
+   - **Status code**: `201 Created`
+   - **Corpo della risposta**:
      ```json
      {
        "movies": [
@@ -1196,15 +1193,15 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
      }
      ```
 
-### Esempio 2: Aggiunta di una Lista di Film con alcuni film già presenti nel database o con dati non validi `/movielist`
+### Esempio 2: aggiunta di una lista di film con alcuni film già presenti nel database o con dati non validi `/movielist`
 
-1. **Richiesta**: Aggiungere una lista di nuovi film con alcuni film già presenti nel database o con dati non validi
+1. **Richiesta**: aggiungere una lista di nuovi film con alcuni film già presenti nel database o con dati non validi
    - **Metodo HTTP**: `POST`
    - **URL**: `/movielist`
    - **Headers**: 
      - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
-     - Content-Type: `application/json`
-   - **Corpo della Richiesta**:
+     - Content-type: `application/json`
+   - **Corpo della richiesta**:
      ```json
      [
          {
@@ -1255,8 +1252,8 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
      ]
      ```
 2. **Risposta**:
-   - **Status Code**: `207 Multi-Status`
-   - **Corpo della Risposta**:
+   - **Status code**: `207 Multi-Status`
+   - **Corpo della risposta**:
      ```json
      {
       "error_messages": [
@@ -1280,15 +1277,15 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
      }
      ```
 
-### Esempio 3: Aggiunta di una Lista di Film Non Validi o già presenti nel database all'Endpoint `/movielist`
+### Esempio 3: aggiunta di una lista di film non validi o già presenti nel database all'endpoint `/movielist`
 
-1. **Richiesta**: Tentativo di aggiungere una lista di nuovi film, tutti con dati non validi o già presenti nel database
+1. **Richiesta**: tentativo di aggiungere una lista di nuovi film, tutti con dati non validi o già presenti nel database
    - **Metodo HTTP**: `POST`
    - **URL**: `/movielist`
    - **Headers**: 
      - Authorization: `Bearer <JWT_FRESH_ACCESS_TOKEN>`
-     - Content-Type: `application/json`
-   - **Corpo della Richiesta**:
+     - Content-type: `application/json`
+   - **Corpo della richiesta**:
      ```json
      [
          {
@@ -1339,8 +1336,8 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
      ]
      ```
 2. **Risposta**:
-   - **Status Code**: `400 Bad Request`
-   - **Corpo della Risposta**:
+   - **Status code**: `400 Bad Request`
+   - **Corpo della risposta**:
      ```json
      {
       "error_messages": [
@@ -1353,16 +1350,16 @@ Questi esempi descrivono situazioni in cui le richieste non hanno successo, spie
      }
      ```
 
-### Descrizione dei Dati Attesi/Ottenuti
+### Descrizione dei dati attesi/ottenuti
 
-1. **Aggiunta di una Lista di Film**:
-   - **Dati Attesi**: Lista di film validi nel corpo della richiesta.
-   - **Dati Ottenuti**: Lista di film appena aggiunti.
+1. **Aggiunta di una lista di film**:
+   - **Dati attesi**: lista di film validi nel corpo della richiesta.
+   - **Dati ottenuti**: lista di film appena aggiunti.
 
-2. **Aggiunta di una Lista di Film con alcuni già presenti nel database o con dati non validi**:
-   - **Dati Attesi**: Lista di film con alcuni già presenti nel database o con dati non validi.
-   - **Dati Ottenuti**: Lista di film aggiunti con messaggi di errore per quelli già presenti nel database o con dati non validi.
+2. **Aggiunta di una lista di film con alcuni già presenti nel database o con dati non validi**:
+   - **Dati attesi**: lista di film con alcuni già presenti nel database o con dati non validi.
+   - **Dati ottenuti**: lista di film aggiunti con messaggi di errore per quelli già presenti nel database o con dati non validi.
 
 3. **Aggiunta di una lista di film con dati non validi o già presenti nel database**:
-- **Dati Attesi**: Lista di film non validi o già presenti nel database nel corpo della richiesta.
-- **Dati Ottenuti**: Messaggi di errore che spiegano perché ogni film non è stato aggiunto.
+- **Dati attesi**: lista di film non validi o già presenti nel database nel corpo della richiesta.
+- **Dati ottenuti**: messaggi di errore che spiegano perché ogni film non è stato aggiunto.
