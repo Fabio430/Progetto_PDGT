@@ -59,7 +59,7 @@ Scelte implementative di rilievo
 Ulteriori informazioni
 - Il file blocklist.py viene utilizzato per fare lo store degli access token e dei refresh token non più validi. Il file refresh_token_store.py invece viene utilizzato per fare lo store momentaneo del refresh token. Sono stati utilizzati dei file locali per semplicità ma questa non è la scelta migliore né la più sicura.
 
-### 3. Riferimento a eventuali dati o servizi esterni sfruttati
+## 3. Riferimento a eventuali dati o servizi esterni sfruttati
 Il progetto utilizza un database PostgreSQL ospitato su Render. Il database è accessibile tramite un URL specificato nel file .env e viene utilizzato per memorizzare i dati relativi agli utenti e ai film. Inoltre, anche il deployment del servizio è stato effettuato su Render, una piattaforma che facilita il deployment di applicazioni web con integrazione continua e scalabilità automatica.
 
 ## 4. Documentazione dell’API implementata (URL, dettagli delle richieste HTTP supportate, formato e codifica dei dati in input ed output, etc.)
@@ -532,7 +532,7 @@ Il servizio è stato distribuito utilizzando Render, una piattaforma di hosting 
 Sono stati utilizzati piani free sia per il deployment del web service sia per la configurazione del database. Per quanto riguarda il deployment questo comporta che in caso di inattività avviene uno spin down del servizio, il che significa che la richiesta successiva impiegherà diversi secondi per essere eseguita o potrebbe non andare a buon fine, dopo di che il servizio si riattiverà.
 Per quanto riguarda il database invece il piano free comporta la cancellazione dello stesso dopo 30 giorni se non si passa ad un piano a pagamento.
 
-# 6. Esempio descrittivo di utilizzo del servizio Web (sequenza di richieste/risposte HTTP di esempio, descrizione dei dati attesi/ottenuti)
+## 6. Esempio descrittivo di utilizzo del servizio Web (sequenza di richieste/risposte HTTP di esempio, descrizione dei dati attesi/ottenuti)
 
 Per testare e verificare le funzionalità dell'API, è stato utilizzato lo strumento Insomnia. Insomnia permette di inviare richieste HTTP e di osservare le risposte dell'API in modo dettagliato, facilitando il debugging e la verifica dei flussi di autenticazione, gestione degli errori, e operazioni CRUD (Create, Read, Update, Delete). Di seguito sono riportati alcuni esempi di richieste e risposte utilizzate per testare l'API.
 
